@@ -4,7 +4,8 @@ from .models import *
 from django.core.mail import send_mail
 from django.conf import settings
 import urllib
-
+import os 
+import resend
 
 def home(request):
     return render(request,'myapp/home.html')
