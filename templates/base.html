@@ -6,110 +6,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BB Fitness Crew</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+    <script>
+        const toggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
 
-        
-        nav {
-            background-color: #0e0e0e;
-            padding: 30px 40px;
-            display: flex;
-            gap: 75px
-        }
+        toggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0 15px;
-            font-weight: bold;
-
-
-        }
-
-        nav a:hover {
-            text-decoration: wavy;
-            color: rgb(14, 5, 143);
-            nav-up: auto;
-        }
-
-        
-        main {
-            padding: 20px;
-            min-height: 70vh;
-        }
-       .footer-up{
-            background-color: #080808bd;
-            color: white;
-            display: flex;
-            gap: 40px;
-            padding: 60px;
-            justify-content: space-between;
-            
-        }
-        .footer-up2{
-            margin-right: 50px;
-        }
-        .footer-up2 a{
-            color: white;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-        }
-        .footer-up2 a:hover{
-            color: rgb(14, 5, 143);
-        }
-        .footer-up3 a{
-            color: white;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            margin-right: 150px;
-            
-        }
-        .footer-up3 a:hover{
-            color: rgb(14, 5, 143);
-        }
-        
-
-        .footer-main{
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            display: flex;
-            gap: 700px;
-            background-color: #0e0e0e;
-        }
-
-        .footer-main p{
-            margin-left: 40px;
-        }
-    </style>
 </head>
+
+<style>
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    main {
+        padding: 20px;
+        min-height: 60vh;
+    }
+
+
+    nav {
+        background-color: #0e0e0e;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
+        position: relative;
+    }
+
+
+    .logo a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+
+    .nav-links {
+        display: flex;
+        flex: 1;
+        justify-content: space-evenly;
+        margin-left: 30px;
+    }
+
+    .nav-links a {
+        flex: 1;
+        text-align: center;
+        padding: 14px 0;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        background-color: rgb(14, 5, 143);
+    }
+
+    
+    .menu-toggle {
+        display: none;
+        font-size: 28px;
+        color: white;
+        cursor: pointer;
+    }
+
+
+
+    .footer-up {
+        background-color: #080808bd;
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 50px 30px;
+    }
+
+    .footer-up1,
+    .footer-up2,
+    .footer-up3 {
+        flex: 1 1 250px;
+    }
+
+    .footer-up2 a,
+    .footer-up3 a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 8px;
+        transition: 0.3s;
+    }
+
+    .footer-up2 a:hover,
+    .footer-up3 a:hover {
+        color: rgb(14, 5, 143);
+    }
+
+
+    .footer-main {
+        background-color: #0e0e0e;
+        color: white;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .footer-main p {
+        margin: 5px 0;
+    }
+
+
+    @media (max-width: 768px) {
+
+        .menu-toggle {
+            display: block;
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: #0e0e0e;
+            position: absolute;
+            top: 60px;
+            left: 0;
+        }
+
+        .nav-links a {
+            border-top: 1px solid #222;
+            padding: 15px;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+
+        .footer-up {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-main {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+        }
+    }
+</style>
+
 
 <body>
 
-    
+
     <nav>
-        <a href="{% url 'home' %}">BB Fitness Crew &#128170</a>
-        <a href="{% url 'tryus' %}">Try Us</a>
-        <a href="{% url 'contact' %}">Join Us</a>
-        <a href="{% url 'pt' %}">Personal Training</a>
-        <a href="{% url 'service' %}">Recovery</a>
-        <a href="{% url 'inbody' %}">Inbody</a>
-        <a href="{% url 'location' %}">Location</a>
+        <div class="logo">
+            <a href="{% url 'home' %}">BB Fitness Crew &#128170</a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            ☰
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'tryus' %}">Try Us</a>
+            <a href="{% url 'contact' %}">Join Us</a>
+            <a href="{% url 'pt' %}">Personal Training</a>
+            <a href="{% url 'service' %}">Recovery</a>
+            <a href="{% url 'inbody' %}">Inbody</a>
+            <a href="{% url 'location' %}">Location</a>
+        </div>
     </nav>
-    
+
     {% block content %}
     <main>
         <h1>Welcome to My Website</h1>
         <p>This is a basic HTML template with a navbar and footer.</p>
     </main>
     {% endblock %}
-    
+
     <div class="footer-up">
         <div class="footer-up1">
             <h1 style="color: rgb(14, 5, 143);">BB Fitness Gym </h1>
