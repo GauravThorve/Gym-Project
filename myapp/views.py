@@ -36,26 +36,28 @@ def service(request):
 
     return render(request,'myapp/service.html')
 
+
+resend.api_key = os.environ.get("RESEND_API_KEY")
 def contact(request):
     if request.method == "POST" :
         name=request.POST.get("name")
         email=request.POST.get("email")
         message=request.POST.get("message")
 
-        ContactModel.objects.create(
-            name=name,
-            email=email,
-            message=message,
-        )
-        send_mail(
-            subject="New Contact Form has Came",
-            message=f"Name : {name} \n Email : {email} \n Message : {message}",
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=["thorvegaurav4@gmail.com"],
+      
+        resend.Emails.send({
+            "from": "onboarding@resend.dev",
+            "to": "thorvegaurav4@gmail.com",
+            "subject": "New Contact Form Submission",
+            "html": f"""
+                <h2>New Contact Form For BB Fitness Crew</h2>
+                <p><strong>Name:</strong> {name}</p>
+                <p><strong>Email:</strong> {email}</p>
+                <p><strong>Message:</strong> {message}</p>
+            """
+        })
 
-        )
-        print("Form Submitted")
-        return redirect('contact')
+        return redirect("/")
     
     return render(request,'myapp/contact.html')
 
