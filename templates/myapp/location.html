@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title%} Location {% endblock %}
+{% block content%}
+<style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f9;
+}
+
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+    flex-wrap: wrap; 
+}
+
+
+.Addressd {
+    flex: 1;
+    min-width: 100px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    
+}
+
+.Addressd p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.Addressd b {
+    color: #007bff;
+    font-size: 20px;
+}
+
+
+.mapadd {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mapadd iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    border: 0;
+}
+</style>
+<body>
+    <div class="contact-container">
+    <div class="Addressd">
+    <h1><b>BB Fitness Crew</b></h1>
+    <p><b>Address</b> - Dharmaveer Chowk Netaji Chowk Above Modern Wines Ulhasnagar-421005</p>
+    <p><b>Phone Number - </b> 8788948680</p>
+    <p><b>Business Hours - </b> 6am - 11:30pm </p>
+    </div> 
+    <div class="mapadd">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7166437905194!2d73.1620621!3d19.2075747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79571c01e2a0b%3A0x647c353cd5d906d7!2sB.B.%20Fitness%20Crew!5e0!3m2!1sen!2sin!4v1771856198459!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    </div>
+</body>
+{% endblock%}

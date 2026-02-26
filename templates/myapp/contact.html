@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+<body>
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<style>
+    
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+
+section {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+
+section h1 {
+    margin-bottom: 10px;
+}
+
+
+section p {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+
+form {
+    text-align: left;
+}
+
+
+form label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+
+form input:focus,
+form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+
+@media (max-width: 600px) {
+    section {
+        margin: 20px;
+        padding: 20px;
+    }
+}
+</style>
+
+<section>
+    <h1>Contact Us</h1>
+    <p>Please fill out the form below</p>
+
+    <form method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+
+        <label>Name</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Email</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Message</label><br>
+        <textarea name="message" rows="5" required></textarea><br><br>
+
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+<br>
+{% endblock %}
+</body>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        
+        nav {
+            background-color: #0e0e0e;
+            padding: 30px 40px;
+            display: flex;
+            gap: 75px
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+            font-weight: bold;
+
+
+        }
+
+        nav a:hover {
+            text-decoration: wavy;
+            color: rgb(14, 5, 143);
+            nav-up: auto;
+        }
+
+        
+        main {
+            padding: 20px;
+            min-height: 70vh;
+        }
+       .footer-up{
+            background-color: #080808bd;
+            color: white;
+            display: flex;
+            gap: 40px;
+            padding: 60px;
+            justify-content: space-between;
+            
+        }
+        .footer-up2{
+            margin-right: 50px;
+        }
+        .footer-up2 a{
+            color: white;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-up2 a:hover{
+            color: rgb(14, 5, 143);
+        }
+        .footer-up3 a{
+            color: white;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            margin-right: 150px;
+            
+        }
+        .footer-up3 a:hover{
+            color: rgb(14, 5, 143);
+        }
+        
+
+        .footer-main{
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            display: flex;
+            gap: 700px;
+            background-color: #0e0e0e;
+        }
+
+        .footer-main p{
+            margin-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <nav>
+        <a href="{% url 'home' %}">BB Fitness Crew &#128170</a>
+        <a href="{% url 'tryus' %}">Try Us</a>
+        <a href="{% url 'contact' %}">Join Us</a>
+        <a href="{% url 'pt' %}">Personal Training</a>
+        <a href="{% url 'service' %}">Recovery</a>
+        <a href="{% url 'inbody' %}">Inbody</a>
+        <a href="{% url 'location' %}">Location</a>
+    </nav>
+    
+    {% block content %}
+    <main>
+        <h1>Welcome to My Website</h1>
+        <p>This is a basic HTML template with a navbar and footer.</p>
+    </main>
+    {% endblock %}
+    
+    <div class="footer-up">
+        <div class="footer-up1">
+            <h1 style="color: rgb(14, 5, 143);">BB Fitness Gym </h1>
+            <p>
+                Behind Modern Wine Shop, Netaji Chowk Ulhasnagar East 421005
+            </p>
+            <p>
+                Phone No. - 8788948680
+            </p>
+            <p>
+                Email - bbfitnessgym@gmail.com
+            </p>
+        </div>
+
+        <div class="footer-up2">
+            <h1 style="color:rgb(14, 5, 143);">Sitemap</h1>
+            <a href="{% url 'home' %}">BB Fitness Gym</a>
+            <a href="{% url 'tryus' %}">Try Us</a>
+            <a href="{% url 'contact' %}">Join Us</a>
+            <a href="{% url 'pt' %}">Personal Training</a>
+            <a href="{% url 'service' %}">Recovery</a>
+            <a href="{% url 'inbody' %}">Inbody</a>
+            <a href="{% url 'location' %}">Location</a>
+        </div>
+
+        <div class="footer-up3">
+            <h1 style="color: rgb(14, 5, 143);">Follow Us</h1>
+            <a href="https://www.instagram.com/bb_fitness_crew.gym?igsh=MXFpcGI2c3E0dzB5Yw==">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Linkedin</a>
+        </div>
+
+    </div>
+    <div class="footer-main">
+        <p>© 2026 My Website. All rights reserved.</p>
+        <p>Made with &#10084 by Gaurav Thorve</p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+
+p {
+    line-height: 1.6;
+}
+
+
+.steps {
+    padding-left: 20px;
+}
+
+.steps li {
+    margin-bottom: 20px;
+}
+
+.steps h3 {
+    margin: 0 0 5px 0;
+}
+
+
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+}
+.steps li {
+    background: #f9f9f9;
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+
+.steps li:hover {
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+}
+</style>
+<body>
+
+    <div class="container">
+        <h1>Personal Training in Ulhasnagar</h1>
+        <p>Looking for a personal trainer near you?</p>
+        <p>Work with a certified gym trainer in Ulhasnagar who builds your custom plan and tracks every session.</p>
+
+        <h2>Why Choose BB Fitness Crew & How It Works</h2>
+
+        <ol class="steps">
+            <li>
+                <h3>Book Your Personal Training Session</h3>
+                <p>Drop the Message on WhatsApp</p>
+            </li>
+
+            <li>
+                <h3>InBody Scan & Goal Setting</h3>
+                <p>Understand your current fitness and define your targets.</p>
+            </li>
+
+            <li>
+                <h3>Your Complimentary Personal Training Session</h3>
+                <p>Experience a personalised 1:1 workout with a certified trainer.</p>
+            </li>
+
+            <li>
+                <h3>See the Plan Ahead</h3>
+                <p>Get a customised training + nutrition roadmap if you choose to continue.</p>
+            </li>
+        </ol>
+    </div>
+</body>
+
+{% endblock%}
