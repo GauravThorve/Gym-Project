@@ -1,18 +1,276 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}BB Fitness Crew{% endblock %}
+
+{% block content %}
 
 <style>
-        img {
-        max-width: 100%;
-        height: auto;
-        display: block;
+
+.hero{
+    position:relative;
+    width:100%;
+    height:90vh;
+    overflow:hidden;
+}
+
+.hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.hero-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.55);
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:700px;
+    padding-left:8%;
+}
+
+.hero-content h1{
+    font-size:4rem;
+    color:white;
+    margin-bottom:15px;
+    line-height:1.1;
+}
+
+.hero-content span{
+    color:#00aeff;
+}
+
+.hero-content p{
+    color:#e0e0e0;
+    font-size:1.2rem;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn-primary{
+    background:#00aeff;
+    color:white;
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 20px rgba(0,174,255,.6);
+}
+
+.btn-secondary{
+    border:2px solid #00aeff;
+    color:white;
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-secondary:hover{
+    background:#00aeff;
+}
+
+.stats{
+    max-width:1200px;
+    margin:60px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    padding:0 20px;
+}
+
+.stat-box{
+    background:#111;
+    padding:30px;
+    text-align:center;
+    border-radius:20px;
+    transition:.3s;
+}
+
+.stat-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(0,174,255,.25);
+}
+
+.stat-box h2{
+    color:#00aeff;
+    font-size:2rem;
+}
+
+.stat-box p{
+    color:#d4d4d4;
+}
+
+.why{
+    max-width:1200px;
+    margin:80px auto;
+    padding:0 20px;
+}
+
+.why h2{
+    text-align:center;
+    color:#00aeff;
+    font-size:2.5rem;
+    margin-bottom:40px;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.why-card{
+    background:#111;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.why-card h3{
+    color:#00aeff;
+    margin-bottom:15px;
+}
+
+.why-card p{
+    color:#d4d4d4;
+    line-height:1.7;
+}
+
+@media(max-width:768px){
+
+    .hero{
+        height:75vh;
     }
 
+    .hero-content{
+        padding:20px;
+    }
+
+    .hero-content h1{
+        font-size:2.3rem;
+    }
+
+    .hero-content p{
+        font-size:1rem;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .why-grid{
+        grid-template-columns:1fr;
+    }
+
+}
 </style>
 
-<body>
-{% block content%}
-<img src="{% static 'myapp/images/home.png' %}" alt="Home" style="width:1350px;">
+<section class="hero">
+
+
+
+    <div class="hero-overlay">
+
+        <div class="hero-content">
+
+            <h1>
+                Build Your <span>Best Body</span>
+            </h1>
+
+            <p>
+                Join BB Fitness Crew and transform your body with expert guidance,
+                modern equipment, and a motivating fitness environment.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'contact' %}" class="btn-primary">
+                    Join Now
+                </a>
+
+                <a href="{% url 'tryus' %}" class="btn-secondary">
+                    Free Trial
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats">
+
+    <div class="stat-box">
+        <h2>200+</h2>
+        <p>Members</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>2+</h2>
+        <p>Years Experience</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>100%</h2>
+        <p>Dedication</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>24/7</h2>
+        <p>Motivation</p>
+    </div>
+
+</section>
+
+<section class="why">
+
+    <h2>Why Choose BB Fitness Crew?</h2>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <h3> Modern Equipment</h3>
+            <p>
+                Premium gym machines and free weights for every fitness goal.
+            </p>
+        </div>
+
+        <div class="why-card">
+            <h3> Expert Trainers</h3>
+            <p>
+                Professional guidance to help you achieve maximum results.
+            </p>
+        </div>
+
+        <div class="why-card">
+            <h3> Community Support</h3>
+            <p>
+                Train in a motivating environment surrounded by like-minded people.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}
-</body>

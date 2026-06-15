@@ -1,25 +1,192 @@
 {% extends 'base.html' %}
 
-{% block title %}About Us{% endblock %}
+{% block title %}About BB Fitness Crew{% endblock %}
 
 {% block content %}
-<section>
-    <h1>About Us</h1>
-    <p>
-        Welcome to our website! We are passionate about building simple,
-        efficient, and user-friendly web applications.
-    </p>
 
-    <p>
-        Our goal is to help users learn and grow through technology.
-        We focus on clean design, performance, and best practices.
-    </p>
+<style>
 
-    <h3>Why Choose Us?</h3>
-    <ul>
-        <li>Simple and clean design</li>
-        <li>Beginner-friendly code</li>
-        <li>Scalable Django applications</li>
-    </ul>
+.about-section{
+    max-width:1200px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.about-hero{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.about-hero h1{
+    font-size:3rem;
+    color:#00aeff;
+    margin-bottom:15px;
+}
+
+.about-hero p{
+    max-width:800px;
+    margin:auto;
+    color:#d4d4d4;
+    font-size:1.1rem;
+    line-height:1.8;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+    margin-top:40px;
+}
+
+.about-card{
+    background:#111;
+    padding:30px;
+    border-radius:20px;
+    transition:.4s;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.about-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(0,174,255,.35);
+}
+
+.about-card h2{
+    color:#00aeff;
+    margin-bottom:15px;
+}
+
+.about-card p{
+    color:#d4d4d4;
+    line-height:1.8;
+}
+
+.why-us{
+    margin-top:60px;
+}
+
+.why-us h2{
+    text-align:center;
+    color:#00aeff;
+    margin-bottom:30px;
+    font-size:2rem;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.feature-box{
+    background:#111;
+    padding:30px;
+    text-align:center;
+    border-radius:20px;
+    transition:.4s;
+}
+
+.feature-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(0,174,255,.35);
+}
+
+.feature-box h3{
+    color:#00aeff;
+    margin-bottom:10px;
+}
+
+.feature-box p{
+    color:#d4d4d4;
+}
+
+@media(max-width:768px){
+
+    .about-hero h1{
+        font-size:2rem;
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+<section class="about-section">
+
+    <div class="about-hero">
+        <h1>About BB Fitness Crew </h1>
+
+        <p>
+            At BB Fitness Crew, we believe fitness is not just about lifting
+            weights—it's about building confidence, discipline, and a healthier
+            lifestyle. Our mission is to help every member become the strongest
+            version of themselves.
+        </p>
+    </div>
+
+    <div class="about-grid">
+
+        <div class="about-card">
+            <h2> Our Mission</h2>
+            <p>
+                To provide a motivating environment where people of all fitness
+                levels can achieve their goals through expert guidance,
+                quality equipment, and a supportive fitness community.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h2> Our Vision</h2>
+            <p>
+                To become the most trusted fitness destination in Ulhasnagar,
+                helping individuals transform their bodies and improve their
+                overall health and confidence.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="why-us">
+
+        <h2>Why Choose BB Fitness Crew?</h2>
+
+        <div class="features">
+
+            <div class="feature-box">
+                <h3> Modern Equipment</h3>
+                <p>
+                    Train with premium machines and free weights designed for
+                    all fitness levels.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <h3>Expert Guidance</h3>
+                <p>
+                    Get professional support and workout plans to reach your
+                    goals faster.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <h3> Positive Environment</h3>
+                <p>
+                    Join a community that motivates, supports, and inspires
+                    your fitness journey every day.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
+
 {% endblock %}

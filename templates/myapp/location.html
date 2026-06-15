@@ -1,74 +1,227 @@
 {% extends 'base.html' %}
-{% block title%} Location {% endblock %}
-{% block content%}
+
+{% block title %}Our Location{% endblock %}
+
+{% block content %}
+
 <style>
-    body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f6f9;
+
+.location-container{
+    max-width:1300px;
+    margin:auto;
+    padding:60px 20px;
 }
 
-
-.contact-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 30px;
-    width: 90%;
-    max-width: 1100px;
-    margin: 50px auto;
-    flex-wrap: wrap; 
+.location-header{
+    text-align:center;
+    margin-bottom:50px;
 }
 
-
-.Addressd {
-    flex: 1;
-    min-width: 100px;
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    
+.location-header h1{
+    color:#00aeff;
+    font-size:3rem;
+    margin-bottom:15px;
 }
 
-.Addressd p {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.6;
+.location-header p{
+    color:#d4d4d4;
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
 }
 
-.Addressd b {
-    color: #007bff;
-    font-size: 20px;
+.location-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:35px;
 }
 
-
-.mapadd {
-    flex: 1;
-    min-width: 300px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.location-card{
+    background:#111;
+    padding:35px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
 }
 
-.mapadd iframe {
-    width: 100%;
-    height: 100%;
-    min-height: 350px;
-    border: 0;
+.location-card:hover{
+    box-shadow:0 0 25px rgba(0,174,255,.25);
 }
+
+.location-card h2{
+    color:#00aeff;
+    margin-bottom:20px;
+}
+
+.location-card p{
+    color:#d4d4d4;
+    line-height:1.9;
+    margin-bottom:15px;
+}
+
+.location-card strong{
+    color:white;
+}
+
+.map-container{
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.map-container iframe{
+    width:100%;
+    height:100%;
+    min-height:450px;
+    border:none;
+}
+
+.facilities{
+    margin-top:60px;
+}
+
+.facilities h2{
+    text-align:center;
+    color:#00aeff;
+    margin-bottom:30px;
+}
+
+.facility-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.facility-card{
+    background:#111;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.facility-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(0,174,255,.25);
+}
+
+.facility-card h3{
+    color:#00aeff;
+    margin-bottom:10px;
+}
+
+.facility-card p{
+    color:#d4d4d4;
+}
+
+@media(max-width:900px){
+
+    .location-wrapper{
+        grid-template-columns:1fr;
+    }
+
+    .facility-grid{
+        grid-template-columns:1fr;
+    }
+
+    .location-header h1{
+        font-size:2rem;
+    }
+
+    .map-container iframe{
+        min-height:300px;
+    }
+}
+
 </style>
-<body>
-    <div class="contact-container">
-    <div class="Addressd">
-    <h1><b>BB Fitness Crew</b></h1>
-    <p><b>Address</b> - Dharmaveer Chowk Netaji Chowk Above Modern Wines Ulhasnagar-421005</p>
-    <p><b>Phone Number - </b> 8788948680</p>
-    <p><b>Business Hours - </b> 6am - 11:30pm </p>
-    </div> 
-    <div class="mapadd">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7166437905194!2d73.1620621!3d19.2075747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79571c01e2a0b%3A0x647c353cd5d906d7!2sB.B.%20Fitness%20Crew!5e0!3m2!1sen!2sin!4v1771856198459!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+<div class="location-container">
+
+    <div class="location-header">
+
+        <h1>Visit BB Fitness Crew </h1>
+
+        <p>
+            Experience world-class fitness equipment, expert guidance,
+            and a motivating environment designed to help you achieve
+            your fitness goals.
+        </p>
+
     </div>
+
+    <div class="location-wrapper">
+
+        <div class="location-card">
+
+            <h2>Gym Information</h2>
+
+            <p>
+                <strong> Address</strong><br>
+                Dharmaveer Chowk, Netaji Chowk,<br>
+                Above Modern Wines,<br>
+                Ulhasnagar - 421005
+            </p>
+
+            <p>
+                <strong> Phone</strong><br>
+                8788948680
+            </p>
+
+            <p>
+                <strong> Business Hours</strong><br>
+                6:00 AM – 11:30 PM
+            </p>
+
+            <p>
+                <strong> Services</strong><br>
+                Gym Training, Personal Training,
+                Recovery Programs, InBody Analysis
+            </p>
+
+        </div>
+
+        <div class="map-container">
+
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7166437905194!2d73.1620621!3d19.2075747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79571c01e2a0b%3A0x647c353cd5d906d7!2sB.B.%20Fitness%20Crew!5e0!3m2!1sen!2sin!4v1771856198459!5m2!1sen!2sin"
+                loading="lazy"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
     </div>
-</body>
-{% endblock%}
+
+    <div class="facilities">
+
+        <h2>What You'll Find Here</h2>
+
+        <div class="facility-grid">
+
+            <div class="facility-card">
+                <h3> Premium Equipment</h3>
+                <p>Modern machines and free weights.</p>
+            </div>
+
+            <div class="facility-card">
+                <h3> Personal Training</h3>
+                <p>Expert trainers for faster results.</p>
+            </div>
+
+            <div class="facility-card">
+                <h3> InBody Analysis</h3>
+                <p>Track your body transformation scientifically.</p>
+            </div>
+
+            <div class="facility-card">
+                <h3> Motivation</h3>
+                <p>Positive environment to stay consistent.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

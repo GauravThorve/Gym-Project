@@ -1,165 +1,301 @@
 {% extends 'base.html' %}
 
-{% block title %}Our Services{% endblock %}
-
+{% block title %}Recovery Services{% endblock %}
 
 {% block content %}
+
 <style>
-    .recovery-section {
-        max-width: 1100px;
-        margin: 80px auto;
-        padding: 0 20px;
-        display: flex;
-        gap: 40px;
-        font-family: 'Segoe UI', sans-serif;
+
+.recovery-container{
+    max-width:1200px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.recovery-header{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.recovery-header h1{
+    color:#00aeff;
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.recovery-header p{
+    color:#d4d4d4;
+    max-width:800px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.recovery-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+}
+
+.recovery-card{
+    background:#111;
+    padding:35px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+.recovery-card:hover{
+    box-shadow:0 0 25px rgba(0,174,255,.25);
+}
+
+.recovery-card h2{
+    color:#00aeff;
+    margin-bottom:20px;
+}
+
+.recovery-card p{
+    color:#d4d4d4;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.feature-list{
+    margin-top:20px;
+}
+
+.feature-list div{
+    padding:12px;
+    margin-bottom:10px;
+    background:#1a1a1a;
+    border-radius:10px;
+}
+
+.form-card form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.form-card input,
+.form-card select{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#1c1c1c;
+    color:white;
+}
+
+.form-card input:focus,
+.form-card select:focus{
+    outline:none;
+    border:1px solid #00aeff;
+}
+
+.book-btn{
+    background:#00aeff;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:50px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.book-btn:hover{
+    box-shadow:0 0 20px rgba(0,174,255,.6);
+}
+
+.whatsapp-btn{
+    display:block;
+    text-align:center;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:15px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.whatsapp-btn:hover{
+    transform:translateY(-3px);
+}
+
+.benefits{
+    margin-top:60px;
+}
+
+.benefits h2{
+    text-align:center;
+    color:#00aeff;
+    margin-bottom:30px;
+}
+
+.benefits-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.benefit-card{
+    background:#111;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.benefit-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(0,174,255,.25);
+}
+
+.benefit-card h3{
+    color:#00aeff;
+    margin-bottom:10px;
+}
+
+.benefit-card p{
+    color:#d4d4d4;
+}
+
+@media(max-width:900px){
+
+    .recovery-grid{
+        grid-template-columns:1fr;
     }
 
-
-    .recovery-box {
-        flex: 1;
-        background: #ffffff;
-        padding: 35px;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    .benefits-grid{
+        grid-template-columns:1fr;
     }
 
-
-    .recovery-box h1 {
-        font-size: 28px;
-        margin-bottom: 15px;
+    .recovery-header h1{
+        font-size:2rem;
     }
+}
 
-    .recovery-box h3 {
-        font-weight: 400;
-        color: #555;
-        line-height: 1.6;
-    }
-
-
-    .form-box form {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-    }
-
-    .form-box input,
-    .form-box select {
-        padding: 12px;
-        border-radius: 6px;
-        border: 1px solid #ddd;
-        font-size: 15px;
-        width: 100%;
-    }
-
-    .form-box input:focus,
-    .form-box select:focus {
-        outline: none;
-        border-color: #007bff;
-    }
-
-
-    .form-box button {
-        padding: 12px;
-        border: none;
-        border-radius: 8px;
-        background-color: #007bff;
-        color: #fff;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.3s ease;
-    }
-
-    .form-box button:hover {
-        background-color: #0056b3;
-    }
-
-
-    @media (max-width: 992px) {
-        .recovery-section {
-            gap: 25px;
-        }
-
-        .recovery-box h1 {
-            font-size: 24px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .recovery-section {
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .recovery-box {
-            padding: 25px;
-        }
-
-        .recovery-box h1 {
-            font-size: 22px;
-        }
-
-        .recovery-box h3 {
-            font-size: 15px;
-        }
-    }
-
-    .btn-whatsapp-book {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        padding: 12px 20px;
-        margin-top: 10px;
-        background-color: #25D366;
-        color: #ffffff;
-        text-decoration: none;
-        font-weight: 600;
-        border-radius: 8px;
-        transition: 0.3s ease;
-    }
-
-    .btn-whatsapp-book:hover {
-        background-color: #1ebe57;
-        transform: translateY(-2px);
-    }
 </style>
 
-<body>
-    <section class="recovery-section">
-        <div class="recovery-box">
-            <h1>
-                Recovery at BB Fitness Crew Gym: Train Hard, Heal Faster
-            </h1>
-            <h3>
-                Advanced therapies to repair muscles, prevent injuries, and keep you performing at your peak.
-            </h3>
+<div class="recovery-container">
+
+    <div class="recovery-header">
+
+        <h1>Recovery & Massage Therapy</h1>
+
+        <p>
+            Train harder, recover faster, and perform better. Our recovery
+            services help reduce muscle soreness, improve flexibility,
+            and accelerate your fitness progress.
+        </p>
+
+    </div>
+
+    <div class="recovery-grid">
+
+        <div class="recovery-card">
+
+            <h2>Why Recovery Matters?</h2>
+
+            <p>
+                Recovery is a crucial part of every fitness journey.
+                Proper muscle recovery improves performance, prevents
+                injuries, and helps your body adapt to training.
+            </p>
+
+            <div class="feature-list">
+                <div> Faster Muscle Recovery</div>
+                <div> Reduced Muscle Soreness</div>
+                <div> Better Mobility & Flexibility</div>
+                <div> Improved Athletic Performance</div>
+                <div>️ Lower Risk of Injury</div>
+            </div>
+
         </div>
-        <div class="recovery-box form-box">
+
+        <div class="recovery-card form-card">
+
+            <h2>Book Your Recovery Session</h2>
+
             <form method="post" action="{% url 'service' %}">
                 {% csrf_token %}
-                <h1>Start your Recovery Today</h1>
 
-                <input type="text" name="name" placeholder="Name*" required>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name"
+                    required>
 
-                <input type="tel" name="phonenumber" placeholder="Phone Number*">
+                <input
+                    type="tel"
+                    name="phonenumber"
+                    placeholder="Phone Number"
+                    required>
 
-                <input type="email" name="email" placeholder="Email(Optional)">
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email (Optional)">
 
-                <select name="massage_type" id="Massagegrp" required>
-                    <optgroup label="Choose a Massage">
-                        <option value="Full Body Massage">Full Body Massage</option>
-                        <option value="Half Body Massage">Half Body Massage</option>
-                    </optgroup>
+                <select name="massage_type" required>
+                    <option value="">Choose Recovery Service</option>
+                    <option value="Full Body Massage">
+                        Full Body Massage
+                    </option>
+                    <option value="Half Body Massage">
+                        Half Body Massage
+                    </option>
                 </select>
 
-                <button type="submit">Book a Massage</button>
-                <a href="https://wa.me/918788948680?text=Hi%20I%20want%20to%20book%20a%20massage%20session"
-                    target="_blank" rel="noopener noreferrer" class="btn-whatsapp-book">
-                    Book via WhatsApp
+                <button type="submit" class="book-btn">
+                    Book Recovery Session
+                </button>
+
+                <a
+                    href="https://wa.me/918788948680?text=Hi%20I%20want%20to%20book%20a%20recovery%20session"
+                    target="_blank"
+                    class="whatsapp-btn">
+
+                    WhatsApp Booking
                 </a>
-                <br><br>
+
             </form>
+
         </div>
-    </section>
-</body>
+
+    </div>
+
+    <div class="benefits">
+
+        <h2>Benefits of Recovery Therapy</h2>
+
+        <div class="benefits-grid">
+
+            <div class="benefit-card">
+                <h3> Recovery</h3>
+                <p>Heal muscles and reduce fatigue faster.</p>
+            </div>
+
+            <div class="benefit-card">
+                <h3> Performance</h3>
+                <p>Maintain peak performance consistently.</p>
+            </div>
+
+            <div class="benefit-card">
+                <h3>️ Injury Prevention</h3>
+                <p>Protect joints and muscles from strain.</p>
+            </div>
+
+            <div class="benefit-card">
+                <h3> Relaxation</h3>
+                <p>Reduce stress and improve overall wellbeing.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

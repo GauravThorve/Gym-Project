@@ -1,191 +1,243 @@
 {% extends 'base.html' %}
-{% load static%}
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Try-Us</title>
-</head>
+{% block title %}Free Trial{% endblock %}
 
-<body>
+{% block content %}
 
-    {% block content %}
-    <style>
-        .trial-section {
-            max-width: 1000px;
-            margin: 80px auto;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            font-family: 'Segoe UI', sans-serif;
-        }
+<style>
 
-        .trial-box {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            transition: 0.3s ease;
-        }
+.try-hero{
+    position:relative;
+    width:100%;
+    height:70vh;
+    overflow:hidden;
+}
 
-        .trial-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-        }
+.try-hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
 
-        .trial-box h2 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #111;
-        }
+.try-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
 
-        .trial-box p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #555;
-            margin-bottom: 10px;
-        }
+.try-content{
+    max-width:800px;
+    padding:20px;
+}
 
-        @media (max-width: 768px) {
-            .trial-box {
-                padding: 20px;
-            }
+.try-content h1{
+    color:white;
+    font-size:3.5rem;
+    margin-bottom:15px;
+}
 
-            .trial-box h2 {
-                font-size: 18px;
-            }
+.try-content span{
+    color:#00aeff;
+}
 
-            .trial-box p {
-                font-size: 14px;
-            }
-        }
+.try-content p{
+    color:#e0e0e0;
+    font-size:1.2rem;
+    line-height:1.8;
+}
 
-        .contact-buttons {
-            display: flex;
-            gap: 20px;
-            margin-top: 25px;
-        }
+.trial-section{
+    max-width:1200px;
+    margin:60px auto;
+    padding:0 20px;
+}
 
+.trial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+.trial-card{
+    background:#111;
+    padding:30px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
 
+.trial-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(0,174,255,.25);
+}
 
-        .btn-whatsapp {
-            padding: 12px 22px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            color: white;
-            transition: 0.3s ease;
-        }
+.trial-card h2{
+    color:#00aeff;
+    margin-bottom:15px;
+}
 
+.trial-card p{
+    color:#d4d4d4;
+    line-height:1.8;
+}
 
-        .btn-call {
-            background: linear-gradient(45deg, #007bff, #0056b3);
-        }
+.cta-section{
+    margin:60px auto;
+    max-width:900px;
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
 
-        .btn-call:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
+.cta-section h2{
+    color:#00aeff;
+    margin-bottom:15px;
+}
 
+.cta-section p{
+    color:#d4d4d4;
+    margin-bottom:25px;
+}
 
-        .btn-whatsapp {
-            background: linear-gradient(45deg, #25D366, #1ebe57);
-            align-items: center;
-            align-content: center;
-        }
+.contact-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
 
-        .btn-whatsapp:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
+.btn-call,
+.btn-whatsapp{
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
 
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
+.btn-call{
+    background:#00aeff;
+    color:white;
+}
 
-        .btn-call {
-            display: inline-flex;
-            align-items: center;
+.btn-call:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 20px rgba(0,174,255,.6);
+}
 
-            justify-content: center;
-            padding: 12px 26px;
-            min-width: 150px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            background-color: #007bff;
-            color: #ffffff;
-            transition: 0.3s ease;
-        }
+.btn-whatsapp{
+    background:#25D366;
+    color:white;
+}
 
-        .btn-call:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
-        }
-    </style>
+.btn-whatsapp:hover{
+    transform:translateY(-3px);
+}
 
-    <body>
-        <img src="{% static 'myapp/images/try_us.png' %}" alt="Try-Us" style="width:1350px;">
-        <section class="trial-section">
-            <div class="trial-box">
-                <h1>
-                    What's Included in Your Free Gym Trial
-                </h1>
-                <p>Gym floor with premium cardio and strength equipment</p>
-                <p>150+ weekly classes — Zumba, Yoga, HIIT, Tabata, CrossFit, Indoor Cycling</p>
-            </div>
-            <div class="trial-box">
-                <h1>A Gym Where Women Feel Welcome</h1>
-                <p>
-                    BB Fitness Crew Gym is built for everyone — but we take women’s safety seriously.
-                    Your free gym trial includes access to all women-friendly areas and classes
-                </p>
-                <p>
-                    Almost 50% of our members are women
-                </p>
-            </div>
-            <div class="trial-box">
-                <h1>
-                    The Vibe
-                </h1>
-                <p>
-                    We respect your time. We respect your space. We respect your goals.
-                </p>
-                <p>
-                    Come for the free gym trial. Stay for the vibe.
-                </p>
-            </div>
-            <div class="trial-box">
-                <h1>
-                    Ready? Your free gym trial is one message away.
-                </h1>
-                <div class="contact-buttons">
-                    <a href="tel:+918788948680 " class="btn-call">CALL</a>
-                    <a href="https://wa.me/918788948680?text=Hi%20I%20want%20gym%20training%20details" target="_blank"
-                        rel="noopener noreferrer" class="btn-whatsapp">
-                        Chat on WhatsApp
-                    </a>
-                </div>
-        </section>
-        <br><br>
-        <br*10>
-    </body>
-    {% endblock %}
-</body>
+@media(max-width:768px){
 
-</html>
+    .try-hero{
+        height:50vh;
+    }
+
+    .try-content h1{
+        font-size:2.2rem;
+    }
+
+    .trial-grid{
+        grid-template-columns:1fr;
+    }
+
+    .cta-section{
+        padding:25px;
+    }
+}
+
+</style>
+
+<section class="try-hero">
+
+    <img src="{% static 'myapp/images/try_us.png' %}" alt="Free Gym Trial">
+
+    <div class="try-overlay">
+
+        <div class="try-content">
+
+            <h1>Try <span>BB Fitness Crew</span> For Free</h1>
+
+            <p>
+                Experience our gym, equipment, trainers, and atmosphere before
+                committing. Your transformation starts with one visit.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="trial-section">
+
+    <div class="trial-grid">
+
+        <div class="trial-card">
+            <h2> What's Included?</h2>
+            <p>Premium cardio equipment</p>
+            <p>Strength training zone</p>
+            <p>Functional training area</p>
+            <p>Access to expert trainers</p>
+        </div>
+
+        <div class="trial-card">
+            <h2> Women Friendly Gym</h2>
+            <p>
+                Safe, supportive and welcoming environment.
+                Many of our members are women who enjoy training
+                comfortably and confidently.
+            </p>
+        </div>
+
+        <div class="trial-card">
+            <h2> The BB Fitness Crew Vibe</h2>
+            <p>
+                We respect your goals, your time, and your journey.
+                Train with motivated people who inspire growth every day.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cta-section">
+
+    <h2>Ready To Start?</h2>
+
+    <p>
+        Your free gym trial is just one call or message away.
+        Visit BB Fitness Crew today and experience the difference.
+    </p>
+
+    <div class="contact-buttons">
+
+        <a href="tel:+918788948680" class="btn-call">
+             Call Now
+        </a>
+
+        <a href="https://wa.me/918788948680?text=Hi%20I%20want%20gym%20training%20details"
+           target="_blank"
+           class="btn-whatsapp">
+                WhatsApp
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
