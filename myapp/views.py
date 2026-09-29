@@ -65,6 +65,7 @@ resend.api_key = os.environ.get("RESEND_API_KEY")
 from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import render
+import logging
 
 def contact(request):
     if request.method == "POST":
@@ -72,11 +73,18 @@ def contact(request):
         email = request.POST.get("email")
         phone = request.POST.get("phone")
         message = request.POST.get("message")
-        from django.conf import settings
 
-        send_mail(
-            f"New BB Fitness Crew Enquiry - {name}",
-            f"""
+        enquiry = ContactModel.objects.create(
+            name=name,
+            email=email,
+            phone=phone or "",
+            message=message,
+        )
+
+        try:
+            send_mail(
+                f"New BB Fitness Crew Enquiry - {name}",
+                f"""
         Name: {name}
         Email: {email}
         Phone: {phone}
@@ -84,15 +92,20 @@ def contact(request):
         Message:
         {message}
         """,
-            settings.EMAIL_HOST_USER,
-            ["thorvegaurav4@gmail.com"],
-            fail_silently=False,
-        )
+                settings.EMAIL_HOST_USER,
+                ["thorvegaurav4@gmail.com"],
+                fail_silently=False,
+            )
+        except Exception:
+            logging.getLogger(__name__).exception(
+                "Could not send email notification for contact enquiry %s",
+                enquiry.pk,
+            )
 
         return render(
             request,
             "myapp/contact.html",
-            {"success": "Thank you! Your message has been sent."}
+            {"success": "Thank you! Your message has been received."}
         )
 
     return render(request, "myapp/contact.html")

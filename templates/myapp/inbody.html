@@ -63,6 +63,7 @@
     display:flex;
     flex-direction:column;
     gap:25px;
+    align-content:start;
 }
 
 .video-map iframe{
@@ -71,6 +72,77 @@
     border:none;
     border-radius:20px;
     overflow:hidden;
+}
+
+.video-thumbnail{
+    position:relative;
+    display:block;
+    width:100%;
+    aspect-ratio:16 / 9;
+    overflow:hidden;
+    border-radius:20px;
+    background:#050505;
+}
+
+.video-thumbnail img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .35s ease;
+}
+
+.video-thumbnail::before{
+    content:"";
+    position:absolute;
+    z-index:1;
+    top:50%;
+    left:50%;
+    width:68px;
+    height:48px;
+    border-radius:14px;
+    background:#ff0000;
+    transform:translate(-50%,-50%);
+    transition:background .2s ease, transform .2s ease;
+}
+
+.video-thumbnail::after{
+    content:"";
+    position:absolute;
+    z-index:2;
+    top:50%;
+    left:50%;
+    margin-left:3px;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
+    border-left:14px solid white;
+    transform:translate(-50%,-50%);
+}
+
+.video-thumbnail:hover img{
+    transform:scale(1.04);
+}
+
+.video-thumbnail:hover::before,
+.video-thumbnail:focus-visible::before{
+    background:#d90000;
+    transform:translate(-50%,-50%) scale(1.08);
+}
+
+.video-thumbnail:focus-visible{
+    outline:3px solid #00aeff;
+    outline-offset:4px;
+}
+
+.video-link{
+    display:inline-block;
+    width:fit-content;
+    color:#00aeff;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.video-link:hover{
+    text-decoration:underline;
 }
 
 .benefits{
@@ -211,10 +283,20 @@
                 loading="lazy">
             </iframe>
 
-            <iframe
-                src="https://www.youtube.com/embed/B6jIUOi8puk"
-                allowfullscreen>
-            </iframe>
+            <a class="video-thumbnail"
+               href="https://www.youtube.com/watch?v=B6jIUOi8puk"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Watch the InBody video on YouTube">
+                <img src="https://img.youtube.com/vi/B6jIUOi8puk/hqdefault.jpg"
+                     alt="InBody analysis video preview">
+            </a>
+            <a class="video-link"
+               href="https://www.youtube.com/watch?v=B6jIUOi8puk"
+               target="_blank"
+               rel="noopener noreferrer">
+                Watch the InBody video on YouTube
+            </a>
 
         </div>
 

@@ -6,219 +6,268 @@
 {% block content %}
 
 <style>
+.home-page{
+    margin:-30px;
+}
 
-.hero{
-    position:relative;
-    width:100%;
-    height:90vh;
+.home-photo{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 24px;
     overflow:hidden;
+    animation:content-enter .6s ease-out both;
 }
 
-.hero img{
+.home-photo img{
     width:100%;
-    height:100%;
-    object-fit:cover;
+    height:auto;
+    border-radius:4px;
+    transition:transform .45s ease, filter .45s ease;
 }
 
-.hero-overlay{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.55);
-    display:flex;
-    align-items:center;
+.home-photo:hover img{
+    transform:scale(1.025);
+    filter:saturate(1.08);
 }
 
-.hero-content{
-    max-width:700px;
-    padding-left:8%;
+.home-intro,
+.why{
+    max-width:1160px;
+    margin:0 auto;
+    padding:64px 24px 48px;
 }
 
-.hero-content h1{
-    font-size:4rem;
-    color:white;
-    margin-bottom:15px;
-    line-height:1.1;
+.eyebrow{
+    color:#00aeff;
+    font-size:.8rem;
+    font-weight:700;
+    text-transform:uppercase;
+    margin-bottom:12px;
 }
 
-.hero-content span{
+.home-intro h1,
+.try-intro h1{
+    color:#fff;
+    font-size:3rem;
+    line-height:1.15;
+    margin-bottom:16px;
+}
+
+.home-intro h1 span,
+.try-intro h1 span{
     color:#00aeff;
 }
 
-.hero-content p{
-    color:#e0e0e0;
-    font-size:1.2rem;
-    line-height:1.8;
-    margin-bottom:30px;
+.home-intro p:not(.eyebrow),
+.try-intro p:not(.eyebrow){
+    max-width:680px;
+    color:#d4d4d4;
+    font-size:1.05rem;
+    line-height:1.75;
+    margin-bottom:24px;
+}
+
+.home-intro{
+    animation:content-enter .55s ease-out both;
+}
+
+@keyframes content-enter{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 .hero-buttons{
     display:flex;
-    gap:15px;
+    gap:12px;
     flex-wrap:wrap;
 }
 
-.btn-primary{
-    background:#00aeff;
-    color:white;
-    text-decoration:none;
-    padding:15px 30px;
-    border-radius:50px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.btn-primary:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 20px rgba(0,174,255,.6);
-}
-
+.btn-primary,
 .btn-secondary{
-    border:2px solid #00aeff;
-    color:white;
-    text-decoration:none;
-    padding:15px 30px;
-    border-radius:50px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:12px 22px;
+    border:1px solid #00aeff;
+    border-radius:4px;
+    color:#fff;
     font-weight:600;
-    transition:.3s;
+    text-decoration:none;
+    transition:background-color .2s ease, color .2s ease, transform .2s ease;
 }
 
-.btn-secondary:hover{
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus-visible{
     background:#00aeff;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible{
+    background:#00aeff;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible{
+    outline:2px solid #fff;
+    outline-offset:3px;
 }
 
 .stats{
-    max-width:1200px;
-    margin:60px auto;
+    max-width:1160px;
+    margin:0 auto;
+    padding:24px;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:25px;
-    padding:0 20px;
+    border-top:1px solid #292929;
+    border-bottom:1px solid #292929;
+    animation:content-enter .6s .2s ease-out both;
 }
 
 .stat-box{
-    background:#111;
-    padding:30px;
-    text-align:center;
-    border-radius:20px;
-    transition:.3s;
+    padding:18px 24px;
+    text-align:left;
+    border-left:1px solid #292929;
+    transition:background-color .2s ease;
+}
+
+.stat-box:first-child{
+    border-left:0;
 }
 
 .stat-box:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 20px rgba(0,174,255,.25);
+    background:rgba(0,174,255,.08);
+    transform:translateY(-3px);
 }
 
 .stat-box h2{
     color:#00aeff;
-    font-size:2rem;
+    font-size:1.8rem;
+    margin-bottom:4px;
 }
 
-.stat-box p{
-    color:#d4d4d4;
-}
-
-.why{
-    max-width:1200px;
-    margin:80px auto;
-    padding:0 20px;
-}
-
-.why h2{
-    text-align:center;
-    color:#00aeff;
-    font-size:2.5rem;
-    margin-bottom:40px;
-}
-
-.why-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
-}
-
-.why-card{
-    background:#111;
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-}
-
-.why-card h3{
-    color:#00aeff;
-    margin-bottom:15px;
-}
-
+.stat-box p,
 .why-card p{
     color:#d4d4d4;
     line-height:1.7;
 }
 
+.why{
+    padding-top:64px;
+    padding-bottom:76px;
+}
+
+.why h2{
+    color:#fff;
+    font-size:2rem;
+    margin-bottom:28px;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+.why-card{
+    padding:20px 18px 12px 0;
+    border-top:2px solid #00aeff;
+    transition:transform .2s ease;
+}
+
+.why-card:hover{
+    transform:translateY(-3px);
+    border-color:#58caff;
+}
+
+.why-card:nth-child(1){animation:content-enter .5s .08s ease-out both;}
+.why-card:nth-child(2){animation:content-enter .5s .16s ease-out both;}
+.why-card:nth-child(3){animation:content-enter .5s .24s ease-out both;}
+
+.stat-box:nth-child(1){animation:content-enter .5s .08s ease-out both;}
+.stat-box:nth-child(2){animation:content-enter .5s .14s ease-out both;}
+.stat-box:nth-child(3){animation:content-enter .5s .2s ease-out both;}
+.stat-box:nth-child(4){animation:content-enter .5s .26s ease-out both;}
+
+.stat-box,
+.why-card{
+    transition:transform .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.why-card h3{
+    color:#00aeff;
+    margin:8px 0 10px;
+}
+
 @media(max-width:768px){
+    .home-page{margin:-15px;}
 
-    .hero{
-        height:75vh;
-    }
+    .home-photo{padding:0 20px;}
 
-    .hero-content{
-        padding:20px;
-    }
+    .home-intro,
+    .why{padding:42px 20px;}
 
-    .hero-content h1{
-        font-size:2.3rem;
-    }
-
-    .hero-content p{
-        font-size:1rem;
-    }
+    .home-intro h1,
+    .try-intro h1{font-size:2.2rem;}
 
     .stats{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,1fr);
+        padding:14px 20px;
     }
 
-    .why-grid{
-        grid-template-columns:1fr;
+    .stat-box{
+        padding:16px 12px;
+        border-left:0;
+        border-bottom:1px solid #292929;
     }
 
+    .why-grid{grid-template-columns:1fr; gap:16px;}
+}
+
+@media(prefers-reduced-motion:reduce){
+    .home-photo,
+    .home-intro,
+    .stats,
+    .stat-box,
+    .why-card{animation:none;}
+    .home-photo img{transition:none;}
+    .home-photo:hover img,
+    .stat-box:hover,
+    .why-card:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover{transform:none;}
+    .btn-primary,
+    .btn-secondary,
+    .stat-box,
+    .why-card{transition:none;}
 }
 </style>
 
-<section class="hero">
+<div class="home-page">
+    <section class="home-photo" aria-label="BB Fitness Crew gym">
+        <img src="{% static 'myapp/images/home.png' %}" alt="BB Fitness Crew gym and fitness team">
+    </section>
 
-
-
-    <div class="hero-overlay">
-
-        <div class="hero-content">
-
-            <h1>
-                Build Your <span>Best Body</span>
-            </h1>
-
-            <p>
-                Join BB Fitness Crew and transform your body with expert guidance,
-                modern equipment, and a motivating fitness environment.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="{% url 'contact' %}" class="btn-primary">
-                    Join Now
-                </a>
-
-                <a href="{% url 'tryus' %}" class="btn-secondary">
-                    Free Trial
-                </a>
-            </div>
-
+    <section class="home-intro">
+        <p class="eyebrow">BB Fitness Crew / Ulhasnagar</p>
+        <h1>Build Your <span>Best Body</span></h1>
+        <p>
+            Join BB Fitness Crew and transform your body with expert guidance,
+            modern equipment, and a motivating fitness environment.
+        </p>
+        <div class="hero-buttons">
+            <a href="{% url 'contact' %}" class="btn-primary">Join Now</a>
+            <a href="{% url 'tryus' %}" class="btn-secondary">Free Trial</a>
         </div>
+    </section>
 
-    </div>
-
-</section>
-
-<section class="stats">
+<section class="stats" aria-label="Gym highlights">
 
     <div class="stat-box">
         <h2>200+</h2>
@@ -272,5 +321,6 @@
     </div>
 
 </section>
+</div>
 
 {% endblock %}

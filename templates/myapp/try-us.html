@@ -6,238 +6,285 @@
 {% block content %}
 
 <style>
+.try-page{margin:-30px;}
 
-.try-hero{
-    position:relative;
-    width:100%;
-    height:70vh;
+@keyframes content-enter{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.try-photo{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 24px;
     overflow:hidden;
+    animation:content-enter .6s ease-out both;
 }
 
-.try-hero img{
+.try-photo img{
     width:100%;
-    height:100%;
+    height:320px;
     object-fit:cover;
+    border-radius:4px;
+    transition:transform .45s ease, filter .45s ease;
 }
 
-.try-overlay{
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,.6);
+.try-photo:hover img{
+    transform:scale(1.025);
+    filter:saturate(1.08);
+}
+
+.try-intro{
+    max-width:1160px;
+    margin:0 auto;
+    padding:56px 24px 42px;
     display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:32px;
+    animation:content-enter .6s .1s ease-out both;
 }
 
-.try-content{
-    max-width:800px;
-    padding:20px;
-}
+.try-intro>div{max-width:720px;}
 
-.try-content h1{
-    color:white;
-    font-size:3.5rem;
-    margin-bottom:15px;
-}
-
-.try-content span{
+.try-link{
+    flex:none;
     color:#00aeff;
+    font-weight:600;
+    text-decoration:none;
+    padding:10px 0;
+    border-bottom:1px solid #00aeff;
+    transition:color .2s ease, border-color .2s ease;
 }
 
-.try-content p{
-    color:#e0e0e0;
-    font-size:1.2rem;
-    line-height:1.8;
+.try-link:hover,
+.try-link:focus-visible{
+    color:#fff;
+    border-color:#fff;
+}
+
+.try-link:focus-visible,
+.btn-call:focus-visible,
+.btn-whatsapp:focus-visible{
+    outline:2px solid #00aeff;
+    outline-offset:4px;
 }
 
 .trial-section{
-    max-width:1200px;
-    margin:60px auto;
-    padding:0 20px;
+    max-width:1160px;
+    margin:0 auto;
+    padding:18px 24px 68px;
+    scroll-margin-top:24px;
+    animation:content-enter .6s .18s ease-out both;
+}
+
+.trial-section>h2{
+    color:#fff;
+    font-size:1.8rem;
+    margin-bottom:24px;
 }
 
 .trial-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:25px;
+    gap:24px;
 }
 
 .trial-card{
-    background:#111;
-    padding:30px;
-    border-radius:20px;
-    border:1px solid rgba(255,255,255,.08);
-    transition:.3s;
+    padding:20px 20px 18px 0;
+    border-top:2px solid #00aeff;
+    transition:transform .2s ease, border-color .2s ease;
 }
 
 .trial-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 20px rgba(0,174,255,.25);
+    transform:translateY(-3px);
+    border-color:#58caff;
 }
 
-.trial-card h2{
+.trial-card:nth-child(1){animation:content-enter .5s .08s ease-out both;}
+.trial-card:nth-child(2){animation:content-enter .5s .16s ease-out both;}
+.trial-card:nth-child(3){animation:content-enter .5s .24s ease-out both;}
+
+.trial-card h3{
     color:#00aeff;
-    margin-bottom:15px;
+    font-size:1.15rem;
+    margin:8px 0 14px;
 }
 
-.trial-card p{
+.trial-card p,
+.trial-card li{
     color:#d4d4d4;
-    line-height:1.8;
+    line-height:1.75;
+}
+
+.trial-card ul{
+    list-style:none;
+    padding:0;
+}
+
+.trial-card li::before{
+    content:"+";
+    color:#00aeff;
+    font-weight:700;
+    margin-right:10px;
 }
 
 .cta-section{
-    margin:60px auto;
-    max-width:900px;
     background:#111;
-    padding:40px;
-    border-radius:20px;
+    border-top:1px solid #292929;
+    padding:42px 24px;
     text-align:center;
+    animation:content-enter .6s .24s ease-out both;
 }
 
+.cta-inner{max-width:1160px; margin:0 auto;}
+
 .cta-section h2{
-    color:#00aeff;
-    margin-bottom:15px;
+    color:#fff;
+    font-size:1.8rem;
+    margin-bottom:10px;
 }
 
 .cta-section p{
+    max-width:600px;
     color:#d4d4d4;
-    margin-bottom:25px;
+    line-height:1.7;
+    margin:0 auto 22px;
 }
 
 .contact-buttons{
     display:flex;
     justify-content:center;
-    gap:20px;
+    gap:12px;
     flex-wrap:wrap;
 }
 
 .btn-call,
 .btn-whatsapp{
-    text-decoration:none;
-    padding:15px 30px;
-    border-radius:50px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:46px;
+    padding:11px 20px;
+    border:1px solid transparent;
+    border-radius:4px;
+    color:#fff;
     font-weight:600;
-    transition:.3s;
+    text-decoration:none;
+    transition:transform .2s ease, filter .2s ease;
 }
 
-.btn-call{
-    background:#00aeff;
-    color:white;
-}
+.btn-call{background:#008fce;}
+.btn-whatsapp{background:#168c49;}
 
-.btn-call:hover{
-    transform:translateY(-3px);
-    box-shadow:0 0 20px rgba(0,174,255,.6);
-}
-
-.btn-whatsapp{
-    background:#25D366;
-    color:white;
-}
-
+.btn-call:hover,
 .btn-whatsapp:hover{
-    transform:translateY(-3px);
+    transform:translateY(-2px);
+    filter:brightness(1.12);
 }
 
 @media(max-width:768px){
+    .try-page{margin:-15px;}
 
-    .try-hero{
-        height:50vh;
+    .try-photo{padding:0 20px;}
+    .try-photo img{height:220px;}
+
+    .try-intro{
+        display:block;
+        padding:40px 20px 30px;
     }
 
-    .try-content h1{
-        font-size:2.2rem;
-    }
+    .try-intro .try-link{display:inline-block; margin-top:2px;}
 
-    .trial-grid{
-        grid-template-columns:1fr;
-    }
-
-    .cta-section{
-        padding:25px;
-    }
+    .trial-section{padding:12px 20px 48px;}
+    .trial-grid{grid-template-columns:1fr; gap:18px;}
+    .trial-card{padding:16px 0;}
+    .cta-section{padding:34px 20px;}
 }
 
+@media(prefers-reduced-motion:reduce){
+    .try-photo,
+    .try-intro,
+    .trial-section,
+    .trial-card,
+    .cta-section{animation:none;}
+    .try-photo img{transition:none;}
+    .try-photo:hover img,
+    .trial-card:hover,
+    .btn-call:hover,
+    .btn-whatsapp:hover{transform:none;}
+    .try-photo:hover img{filter:none;}
+    .try-link,
+    .trial-card,
+    .btn-call,
+    .btn-whatsapp{transition:none;}
+}
 </style>
 
-<section class="try-hero">
+<div class="try-page">
+    <section class="try-photo" aria-label="BB Fitness Crew free trial">
+        <img src="{% static 'myapp/images/try_us.png' %}" alt="BB Fitness Crew gym and free trial">
+    </section>
 
-    <img src="{% static 'myapp/images/try_us.png' %}" alt="Free Gym Trial">
-
-    <div class="try-overlay">
-
-        <div class="try-content">
-
+    <section class="try-intro">
+        <div>
+            <p class="eyebrow">BB Fitness Crew / Free Trial</p>
             <h1>Try <span>BB Fitness Crew</span> For Free</h1>
-
             <p>
                 Experience our gym, equipment, trainers, and atmosphere before
                 committing. Your transformation starts with one visit.
             </p>
-
         </div>
+        <a class="try-link" href="#trial-details">Explore the free trial <span aria-hidden="true">&darr;</span></a>
+    </section>
 
-    </div>
+    <section class="trial-section" id="trial-details" aria-labelledby="trial-heading">
+        <h2 id="trial-heading">What to expect on your visit</h2>
+        <div class="trial-grid">
+            <article class="trial-card">
+                <h3>What's Included?</h3>
+                <ul>
+                    <li>Premium cardio equipment</li>
+                    <li>Strength training zone</li>
+                    <li>Functional training area</li>
+                    <li>Access to expert trainers</li>
+                </ul>
+            </article>
 
-</section>
+            <article class="trial-card">
+                <h3>Women-Friendly Gym</h3>
+                <p>
+                    Safe, supportive and welcoming environment. Many of our members
+                    are women who enjoy training comfortably and confidently.
+                </p>
+            </article>
 
-<section class="trial-section">
-
-    <div class="trial-grid">
-
-        <div class="trial-card">
-            <h2> What's Included?</h2>
-            <p>Premium cardio equipment</p>
-            <p>Strength training zone</p>
-            <p>Functional training area</p>
-            <p>Access to expert trainers</p>
+            <article class="trial-card">
+                <h3>The BB Fitness Crew Vibe</h3>
+                <p>
+                    We respect your goals, your time, and your journey. Train with
+                    motivated people who inspire growth every day.
+                </p>
+            </article>
         </div>
+    </section>
 
-        <div class="trial-card">
-            <h2> Women Friendly Gym</h2>
+    <section class="cta-section">
+        <div class="cta-inner">
+            <h2>Ready To Start?</h2>
             <p>
-                Safe, supportive and welcoming environment.
-                Many of our members are women who enjoy training
-                comfortably and confidently.
+                Your free gym trial is just one call or message away.
+                Visit BB Fitness Crew today and experience the difference.
             </p>
+            <div class="contact-buttons">
+                <a href="tel:+918788948680" class="btn-call">Call Now</a>
+                <a href="https://wa.me/918788948680?text=Hi%20I%20want%20gym%20training%20details"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-whatsapp">WhatsApp</a>
+            </div>
         </div>
-
-        <div class="trial-card">
-            <h2> The BB Fitness Crew Vibe</h2>
-            <p>
-                We respect your goals, your time, and your journey.
-                Train with motivated people who inspire growth every day.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="cta-section">
-
-    <h2>Ready To Start?</h2>
-
-    <p>
-        Your free gym trial is just one call or message away.
-        Visit BB Fitness Crew today and experience the difference.
-    </p>
-
-    <div class="contact-buttons">
-
-        <a href="tel:+918788948680" class="btn-call">
-             Call Now
-        </a>
-
-        <a href="https://wa.me/918788948680?text=Hi%20I%20want%20gym%20training%20details"
-           target="_blank"
-           class="btn-whatsapp">
-                WhatsApp
-        </a>
-
-    </div>
-
-</section>
+    </section>
+</div>
 
 {% endblock %}
