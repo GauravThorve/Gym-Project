@@ -1,11 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .models import *
-from django.core.mail import send_mail
-from django.conf import settings
 import urllib
 import os 
 import resend
+import logging
 
 def home(request):
     return render(request,'myapp/home.html')
@@ -82,20 +81,20 @@ def contact(request):
         )
 
         try:
-            send_mail(
-                f"New BB Fitness Crew Enquiry - {name}",
-                f"""
-        Name: {name}
-        Email: {email}
-        Phone: {phone}
+            resend.Emails.send({
+                "from": "onboarding@resend.dev",
+                "to": ["thorvegaurav4@gmail.com"],
+                "subject": f"New BB Fitness Crew Enquiry - {name}",
+                "html": f"""
+                    <h2>New BB Fitness Crew Enquiry</h2>
+                    <p><strong>Name:</strong> {name}</p>
+                    <p><strong>Email:</strong> {email}</p>
+                    <p><strong>Phone:</strong> {phone}</p>
+                    <p><strong>Message:</strong></p>
+                    <p>{message}</p>
+                """
+            })
 
-        Message:
-        {message}
-        """,
-                settings.EMAIL_HOST_USER,
-                ["thorvegaurav4@gmail.com"],
-                fail_silently=False,
-            )
         except Exception:
             logging.getLogger(__name__).exception(
                 "Could not send email notification for contact enquiry %s",
@@ -109,6 +108,11 @@ def contact(request):
         )
 
     return render(request, "myapp/contact.html")
+
+
+
+
+
 
 
 
