@@ -5,6 +5,7 @@ import urllib
 import os 
 import resend
 import logging
+from django.templatetags.static import static
 
 def home(request):
     return render(request,'myapp/home.html')
@@ -129,9 +130,29 @@ def try_us_view(request):
 def inbody(request):
     return render(request,'myapp/inbody.html')
 
+from types import SimpleNamespace
 
 def personal_training(request):
-    trainers = Trainer.objects.filter(is_active=True)
+    trainers = list(Trainer.objects.filter(is_active=True))
+
+    if not trainers:
+        fallback_photo = SimpleNamespace(
+            url=static("myapp/images/trainer-fallback.png")
+        )
+
+        trainers = [
+            SimpleNamespace(
+                name="Professional Fitness Trainer",
+                specialization="Strength & Conditioning",
+                experience=5,
+                photo=fallback_photo,
+                description=(
+                    "Train with our experienced fitness team to "
+                    "improve your strength, fitness and confidence."
+                ),
+                is_active=True,
+            )
+        ]
 
     return render(request, "myapp/pt.html", {
         "trainers": trainers
