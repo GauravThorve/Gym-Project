@@ -1,188 +1,613 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Personal Training{% endblock %}
 
 {% block content %}
 
 <style>
-
-.pt-container{
-    max-width:1200px;
-    margin:auto;
-    padding:60px 20px;
-}
-
-.pt-header{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.pt-header h1{
-    color:#00aeff;
-    font-size:3rem;
-    margin-bottom:15px;
-}
-
-.pt-header p{
-    color:#d4d4d4;
-    max-width:800px;
-    margin:auto;
-    line-height:1.8;
-}
-
-.pt-hero{
-    background:#111;
-    border-radius:25px;
-    padding:40px;
-    text-align:center;
-    margin-bottom:50px;
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.pt-hero h2{
-    color:#00aeff;
-    margin-bottom:15px;
-}
-
-.pt-hero p{
-    color:#d4d4d4;
-    line-height:1.8;
-}
-
-.steps-title{
-    text-align:center;
-    color:#00aeff;
-    margin-bottom:35px;
-    font-size:2rem;
-}
-
-.steps-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
-}
-
-.step-card{
-    background:#111;
-    padding:30px;
-    border-radius:20px;
-    transition:.3s;
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.step-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 20px rgba(0,174,255,.25);
-}
-
-.step-number{
-    width:50px;
-    height:50px;
-    background:#00aeff;
-    color:white;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.step-card h3{
-    color:#00aeff;
-    margin-bottom:10px;
-}
-
-.step-card p{
-    color:#d4d4d4;
-    line-height:1.7;
-}
-
-.benefits{
-    margin-top:60px;
-}
-
-.benefits h2{
-    text-align:center;
-    color:#00aeff;
-    margin-bottom:30px;
-}
-
-.benefit-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.benefit-card{
-    background:#111;
-    padding:25px;
-    border-radius:20px;
-    text-align:center;
-}
-
-.benefit-card h3{
-    color:#00aeff;
-    margin-bottom:10px;
-}
-
-.benefit-card p{
-    color:#d4d4d4;
-}
-
-.cta{
-    margin-top:60px;
-    text-align:center;
-    background:#111;
-    padding:40px;
-    border-radius:20px;
-}
-
-.cta h2{
-    color:#00aeff;
-    margin-bottom:15px;
-}
-
-.cta p{
-    color:#d4d4d4;
-    margin-bottom:20px;
-}
-
-.cta a{
-    display:inline-block;
-    text-decoration:none;
-    background:#00aeff;
-    color:white;
-    padding:15px 30px;
-    border-radius:50px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.cta a:hover{
-    transform:translateY(-3px);
-    box-shadow:0 0 20px rgba(0,174,255,.6);
-}
-
-@media(max-width:768px){
-
-    .pt-header h1{
-        font-size:2rem;
+    .pt-container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 60px 20px;
     }
 
-    .steps-grid{
-        grid-template-columns:1fr;
+    .pt-header {
+        text-align: center;
+        margin-bottom: 50px;
     }
 
-    .benefit-grid{
-        grid-template-columns:1fr;
+    .pt-header h1 {
+        color: #00aeff;
+        font-size: 3rem;
+        margin-bottom: 15px;
     }
 
-    .pt-hero{
-        padding:25px;
+    .pt-header p {
+        color: #d4d4d4;
+        max-width: 800px;
+        margin: auto;
+        line-height: 1.8;
     }
-}
 
+    .pt-hero {
+        background: #111;
+        border-radius: 25px;
+        padding: 40px;
+        text-align: center;
+        margin-bottom: 50px;
+        border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .pt-hero h2 {
+        color: #00aeff;
+        margin-bottom: 15px;
+    }
+
+    .pt-hero p {
+        color: #d4d4d4;
+        line-height: 1.8;
+    }
+
+    .steps-title {
+        text-align: center;
+        color: #00aeff;
+        margin-bottom: 35px;
+        font-size: 2rem;
+    }
+
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .step-card {
+        background: #111;
+        padding: 30px;
+        border-radius: 20px;
+        transition: .3s;
+        border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .step-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 0 20px rgba(0, 174, 255, .25);
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
+        background: #00aeff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .step-card h3 {
+        color: #00aeff;
+        margin-bottom: 10px;
+    }
+
+    .step-card p {
+        color: #d4d4d4;
+        line-height: 1.7;
+    }
+
+    .benefits {
+        margin-top: 60px;
+    }
+
+    .benefits h2 {
+        text-align: center;
+        color: #00aeff;
+        margin-bottom: 30px;
+    }
+
+    .benefit-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .benefit-card {
+        background: #111;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .benefit-card h3 {
+        color: #00aeff;
+        margin-bottom: 10px;
+    }
+
+    .benefit-card p {
+        color: #d4d4d4;
+    }
+
+    .cta {
+        margin-top: 60px;
+        text-align: center;
+        background: #111;
+        padding: 40px;
+        border-radius: 20px;
+    }
+
+    .cta h2 {
+        color: #00aeff;
+        margin-bottom: 15px;
+    }
+
+    .cta p {
+        color: #d4d4d4;
+        margin-bottom: 20px;
+    }
+
+    .cta a {
+        display: inline-block;
+        text-decoration: none;
+        background: #00aeff;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: .3s;
+    }
+
+    .cta a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 20px rgba(0, 174, 255, .6);
+    }
+
+    /* Trainer section */
+    .trainers-section {
+        margin: 50px 0 60px;
+    }
+
+    .trainers-intro {
+        color: #d4d4d4;
+        text-align: center;
+        max-width: 700px;
+        margin: -15px auto 35px;
+        line-height: 1.8;
+    }
+
+    .trainers-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Small horizontal trainer ticket */
+    .trainer-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 22px;
+        width: 100%;
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 18px;
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        box-sizing: border-box;
+        transition: 0.3s ease;
+    }
+
+    .trainer-row:hover {
+        border-color: #00aeff;
+        transform: translateY(-3px);
+    }
+
+    /* Photo on the left */
+    .trainer-photo {
+        flex: 0 0 180px;
+        width: 180px;
+    }
+
+    .trainer-photo img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    /* Details on the right */
+    .trainer-details {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .trainer-details h3 {
+        color: #00aeff;
+        font-size: 1.5rem;
+        margin: 0 0 8px;
+    }
+
+    .trainer-role {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 8px;
+    }
+
+    .trainer-experience {
+        color: #00aeff;
+        font-weight: 600;
+        margin: 0 0 10px;
+    }
+
+    .trainer-description {
+        color: #d4d4d4;
+        line-height: 1.6;
+        margin: 0;
+        white-space: pre-line;
+        overflow-wrap: anywhere;
+    }
+
+    /* Mobile layout: still horizontal */
+    @media (max-width: 600px) {
+        .trainer-row {
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .trainer-photo {
+            flex: 0 0 35%;
+            width: 35%;
+        }
+
+        .trainer-details h3 {
+            font-size: 1.15rem;
+        }
+
+        .trainer-role,
+        .trainer-experience,
+        .trainer-description {
+            font-size: 0.9rem;
+        }
+    }
+
+    .trainer-role {
+        color: white;
+        font-weight: 600;
+    }
+
+
+
+    .trainers-section {
+        margin: 50px 0 60px;
+    }
+
+    .trainers-intro {
+        color: #d4d4d4;
+        text-align: center;
+        max-width: 700px;
+        margin: -15px auto 35px;
+        line-height: 1.8;
+    }
+
+    .trainers-list {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .trainer-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 35px;
+        align-items: center;
+        padding: 25px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .trainer-photo {
+        width: 100%;
+    }
+
+    .trainer-photo img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .trainer-details {
+        padding: 10px 15px;
+    }
+
+    .trainer-details h3 {
+        color: #00aeff;
+        font-size: 2rem;
+        margin: 0 0 15px;
+    }
+
+    .trainer-role {
+        color: #fff;
+        font-size: 1.15rem;
+        font-weight: 600;
+    }
+
+    .trainer-experience {
+        color: #00aeff;
+        font-weight: 600;
+    }
+
+    .trainer-description {
+        color: #d4d4d4;
+        line-height: 1.9;
+        white-space: pre-line;
+    }
+
+    /* ===== TRAINER SECTION ===== */
+    .trainers-section {
+        margin: 50px 0 60px;
+    }
+
+    .trainers-intro {
+        color: #d4d4d4;
+        text-align: center;
+        max-width: 700px;
+        margin: -15px auto 35px;
+        line-height: 1.8;
+    }
+
+    .trainers-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    /* ===== INTERACTIVE HORIZONTAL TICKET ===== */
+    .trainer-row {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 26px;
+
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 18px;
+
+        background: linear-gradient(115deg, #15191f, #0c1015);
+        border: 1px solid rgba(0, 174, 255, 0.22);
+        border-radius: 18px;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+        transition:
+            transform 0.35s ease,
+            border-color 0.35s ease,
+            box-shadow 0.35s ease,
+            background 0.35s ease;
+    }
+
+    /* Blue accent on the left edge */
+    .trainer-row::before {
+        content: "";
+        position: absolute;
+        top: 15%;
+        bottom: 15%;
+        left: 0;
+        width: 4px;
+        border-radius: 0 5px 5px 0;
+        background: #00aeff;
+        box-shadow: 0 0 12px rgba(0, 174, 255, 0.75);
+        transition: top 0.35s ease, bottom 0.35s ease;
+    }
+
+    .trainer-row:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 174, 255, 0.8);
+        background: linear-gradient(115deg, #19232d, #10151c);
+        box-shadow:
+            0 14px 32px rgba(0, 0, 0, 0.35),
+            0 0 22px rgba(0, 174, 255, 0.12);
+    }
+
+    .trainer-row:hover::before {
+        top: 0;
+        bottom: 0;
+    }
+
+    /* ===== TRAINER PHOTO ===== */
+    .trainer-photo {
+        flex: 0 0 190px;
+        width: 190px;
+        overflow: hidden;
+        border-radius: 13px;
+        background: #202832;
+        line-height: 0;
+    }
+
+    .trainer-photo img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 13px;
+
+        transition: transform 0.45s ease, filter 0.45s ease;
+    }
+
+    .trainer-row:hover .trainer-photo img {
+        transform: scale(1.04);
+        filter: brightness(1.08);
+    }
+
+    /* ===== TRAINER DETAILS ===== */
+    .trainer-details {
+        flex: 1;
+        min-width: 0;
+        padding: 8px 10px 8px 0;
+    }
+
+    .trainer-details h3 {
+        color: #ffffff;
+        font-size: 1.65rem;
+        font-weight: 750;
+        letter-spacing: 0.3px;
+        margin: 0 0 10px;
+        transition: color 0.3s ease;
+    }
+
+    .trainer-row:hover .trainer-details h3 {
+        color: #00aeff;
+    }
+
+    .trainer-role {
+        display: inline-block;
+        color: #00c0ff;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+
+        background: rgba(0, 174, 255, 0.1);
+        border: 1px solid rgba(0, 174, 255, 0.2);
+        border-radius: 6px;
+        padding: 6px 10px;
+        margin: 0 0 12px;
+    }
+
+    .trainer-experience {
+        color: #f0f3f6;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin: 0 0 12px;
+    }
+
+    .trainer-experience::before {
+        content: "★";
+        color: #00aeff;
+        margin-right: 8px;
+    }
+
+    .trainer-description {
+        color: #b9c2cc;
+        font-size: 0.96rem;
+        line-height: 1.8;
+        margin: 0;
+        white-space: pre-line;
+        overflow-wrap: anywhere;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 600px) {
+        .trainer-row {
+            gap: 14px;
+            padding: 13px;
+            border-radius: 14px;
+        }
+
+        .trainer-photo {
+            flex: 0 0 36%;
+            width: 36%;
+            border-radius: 10px;
+        }
+
+        .trainer-photo img {
+            border-radius: 10px;
+        }
+
+        .trainer-details {
+            padding: 4px 0;
+        }
+
+        .trainer-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .trainer-role {
+            font-size: 0.72rem;
+            padding: 5px 7px;
+            margin-bottom: 8px;
+        }
+
+        .trainer-experience {
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .trainer-description {
+            font-size: 0.84rem;
+            line-height: 1.55;
+        }
+    }
+
+    /* Respect visitors who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+
+        .trainer-row,
+        .trainer-photo img,
+        .trainer-details h3,
+        .trainer-row::before {
+            transition: none;
+        }
+
+        .trainer-row:hover {
+            transform: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .trainer-row {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .trainer-details {
+            padding: 10px 0;
+        }
+
+        .trainer-details h3 {
+            font-size: 1.6rem;
+        }
+    }
+
+
+    @media (max-width: 768px) {
+        .trainers-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .trainer-image {
+            height: 280px;
+        }
+    }
+
+    @media(max-width:768px) {
+
+        .pt-header h1 {
+            font-size: 2rem;
+        }
+
+        .steps-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .benefit-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .pt-hero {
+            padding: 25px;
+        }
+    }
 </style>
 
 <div class="pt-container">
@@ -205,7 +630,51 @@
             specifically for you.
         </p>
     </div>
+    <!-- Personal Trainers Section -->
+    <section class="trainers-section">
 
+        <h2 class="steps-title">Meet Our Personal Trainers</h2>
+
+        <p class="trainers-intro">
+            Get expert guidance from our dedicated fitness professionals
+            and take your training to the next level.
+        </p>
+
+
+
+        <div class="trainers-list">
+
+            {% for trainer in trainers %}
+            <div class="trainer-row">
+
+                <div class="trainer-photo">
+                    {% if trainer.photo %}
+                    <img src="{{ trainer.photo.url }}" alt="{{ trainer.name }}">
+                    {% endif %}
+                </div>
+
+                <div class="trainer-details">
+                    <h3>{{ trainer.name }}</h3>
+
+                    <p class="trainer-role">{{ trainer.specialization }}</p>
+
+                    <p class="trainer-experience">
+                        {{ trainer.experience }} years of experience
+                    </p>
+
+                    <p class="trainer-description">
+                        {{ trainer.description }}
+                    </p>
+                </div>
+
+            </div>
+            {% empty %}
+            <p>No trainers available at the moment.</p>
+            {% endfor %}
+
+        </div>
+
+    </section>
     <h2 class="steps-title">How It Works</h2>
 
     <div class="steps-grid">
