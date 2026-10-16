@@ -129,7 +129,6 @@ def try_us_view(request):
 def inbody(request):
     return render(request,'myapp/inbody.html')
 
-from models import personal_training
 
 def personal_training(request):
     trainers = Trainer.objects.filter(is_active=True)
