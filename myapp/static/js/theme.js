@@ -1,61 +1,63 @@
+// BB Fitness Crew - Theme Manager
+(function () {
+    "use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
-    const button = document.getElementById("theme-toggle");
-    const icon = document.getElementById("theme-icon");
-    const label = document.getElementById("theme-label");
-    const root = document.documentElement;
+    function initTheme() {
+        var button = document.getElementById("theme-toggle");
+        var label = document.getElementById("theme-label");
+        var root = document.documentElement;
 
-    if (!button) {
-        console.error("Theme toggle button not found!");
-        return;
-    }
+        function applyTheme(theme) {
+            root.setAttribute("data-theme", theme);
 
-    function applyTheme(theme) {
-        root.setAttribute("data-theme", theme);
+            if (button) {
+                var isLight = theme === "light";
+                button.setAttribute("aria-checked", isLight ? "true" : "false");
+                button.setAttribute(
+                    "aria-label",
+                    isLight ? "Switch to dark mode" : "Switch to light mode"
+                );
+                button.title = "Current: " + (isLight ? "Light Mode" : "Dark Mode") + ". Click to switch.";
+            }
 
-        if (icon) {
-            icon.textContent = theme === "dark" ? "☀️" : "🌙";
+            if (label) {
+                label.textContent = theme === "light" ? "Light" : "Dark";
+            }
         }
 
-        if (label) {
-            label.textContent =
-                theme === "dark" ? "Light Mode" : "Dark Mode";
-        }
-
-        button.setAttribute(
-            "aria-label",
-            theme === "dark"
-                ? "Switch to light mode"
-                : "Switch to dark mode"
-        );
-    }
-
-    let savedTheme;
-
-    try {
-        savedTheme = localStorage.getItem("gym-theme");
-    } catch (error) {
-        savedTheme = null;
-    }
-
-    applyTheme(
-        savedTheme === "light" || savedTheme === "dark"
-            ? savedTheme
-            : "dark"
-    );
-
-    button.addEventListener("click", function () {
-        const currentTheme = root.getAttribute("data-theme");
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-        applyTheme(newTheme);
-
+        var savedTheme = "dark";
         try {
-            localStorage.setItem("gym-theme", newTheme);
-        } catch (error) {
-            console.warn("Theme preference could not be saved.");
+            var local = localStorage.getItem("gym-theme");
+            if (local === "light" || local === "dark") {
+                savedTheme = local;
+            } else if (root.getAttribute("data-theme")) {
+                savedTheme = root.getAttribute("data-theme");
+            }
+        } catch (e) {
+            savedTheme = "dark";
         }
 
-        console.log("Current theme:", newTheme);
-    });
-});
+        applyTheme(savedTheme);
+
+        if (button) {
+            button.addEventListener("click", function () {
+                var currentTheme = root.getAttribute("data-theme") || "dark";
+                var nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+                applyTheme(nextTheme);
+
+                try {
+                    localStorage.setItem("gym-theme", nextTheme);
+                } catch (e) {
+                    console.warn("Theme preference could not be saved to localStorage.", e);
+                }
+            });
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initTheme);
+    } else {
+        initTheme();
+    }
+})();

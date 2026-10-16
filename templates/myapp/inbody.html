@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}InBody Analysis{% endblock %}
+{% block title %}BB Fitness Crew | InBody Analysis{% endblock %}
 
 {% block content %}
 
 <style>
-
 .inbody-container{
     max-width:1300px;
     margin:auto;
@@ -19,15 +18,17 @@
 
 .inbody-header h1{
     font-size:3rem;
-    color:#00aeff;
+    color: var(--accent-color);
     margin-bottom:15px;
+    font-weight:750;
 }
 
 .inbody-header p{
-    color:#d4d4d4;
+    color: var(--muted-text);
     max-width:800px;
     margin:auto;
     line-height:1.8;
+    font-size:1.05rem;
 }
 
 .inbody-section{
@@ -37,26 +38,30 @@
 }
 
 .inbody-card{
-    background:#111;
+    background: var(--surface-card);
     border-radius:20px;
     padding:35px;
-    border:1px solid rgba(255,255,255,.08);
-    transition:.3s;
+    border:1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
 }
 
 .inbody-card:hover{
-    box-shadow:0 0 25px rgba(0,174,255,.25);
+    box-shadow: var(--card-hover-shadow);
 }
 
 .inbody-card h2{
-    color:#00aeff;
+    color: var(--accent-color);
     margin-bottom:20px;
+    font-size:1.6rem;
+    font-weight:750;
 }
 
 .inbody-card p{
-    color:#d4d4d4;
+    color: var(--muted-text);
     line-height:1.8;
     margin-bottom:12px;
+    font-size:1rem;
 }
 
 .video-map{
@@ -72,6 +77,9 @@
     border:none;
     border-radius:20px;
     overflow:hidden;
+    border:1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    display:block;
 }
 
 .video-thumbnail{
@@ -81,7 +89,9 @@
     aspect-ratio:16 / 9;
     overflow:hidden;
     border-radius:20px;
-    background:#050505;
+    background: var(--surface-elevated);
+    border:1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
 }
 
 .video-thumbnail img{
@@ -89,6 +99,7 @@
     height:100%;
     object-fit:cover;
     transition:transform .35s ease;
+    display:block;
 }
 
 .video-thumbnail::before{
@@ -129,30 +140,34 @@
 }
 
 .video-thumbnail:focus-visible{
-    outline:3px solid #00aeff;
+    outline:3px solid var(--accent-color);
     outline-offset:4px;
 }
 
 .video-link{
     display:inline-block;
     width:fit-content;
-    color:#00aeff;
+    color: var(--accent-color);
     font-weight:600;
     text-decoration:none;
+    transition:color .2s ease;
 }
 
 .video-link:hover{
+    color: var(--accent-hover);
     text-decoration:underline;
 }
 
 .benefits{
-    margin-top:50px;
+    margin-top:60px;
 }
 
 .benefits h2{
     text-align:center;
-    color:#00aeff;
+    color: var(--accent-color);
     margin-bottom:30px;
+    font-size:2.1rem;
+    font-weight:750;
 }
 
 .benefit-grid{
@@ -162,125 +177,139 @@
 }
 
 .benefit-card{
-    background:#111;
-    padding:25px;
+    background: var(--surface-card);
+    padding:28px 20px;
     text-align:center;
     border-radius:20px;
-    transition:.3s;
+    border:1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
 }
 
 .benefit-card:hover{
     transform:translateY(-8px);
-    box-shadow:0 0 20px rgba(0,174,255,.25);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--accent-color);
 }
 
 .benefit-card h3{
-    color:#00aeff;
+    color: var(--accent-color);
     margin-bottom:10px;
+    font-size:1.2rem;
 }
 
 .benefit-card p{
-    color:#d4d4d4;
+    color: var(--muted-text);
+    line-height:1.6;
 }
 
 .cta{
     margin-top:60px;
-    background:#111;
-    padding:40px;
+    background: var(--surface-card);
+    border:1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    padding:45px 30px;
     text-align:center;
     border-radius:20px;
+    transition:background-color .25s ease, border-color .25s ease;
 }
 
 .cta h2{
-    color:#00aeff;
+    color: var(--accent-color);
     margin-bottom:15px;
+    font-size:2.1rem;
+    font-weight:750;
 }
 
 .cta p{
-    color:#d4d4d4;
-    margin-bottom:20px;
+    color: var(--muted-text);
+    margin-bottom:24px;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:1.05rem;
 }
 
 .cta a{
     display:inline-block;
-    background:#00aeff;
-    color:white;
+    background: var(--accent-color);
+    color: #ffffff !important;
     text-decoration:none;
-    padding:14px 30px;
+    padding:14px 34px;
     border-radius:50px;
     font-weight:600;
-    transition:.3s;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    transition:transform .25s ease, background-color .25s ease, box-shadow .25s ease;
 }
 
 .cta a:hover{
-    box-shadow:0 0 20px rgba(0,174,255,.6);
+    background: var(--accent-hover);
+    box-shadow: 0 8px 25px var(--accent-glow);
     transform:translateY(-3px);
 }
 
 @media(max-width:900px){
-
     .inbody-section{
         grid-template-columns:1fr;
     }
 
     .benefit-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2, 1fr);
     }
 
     .inbody-header h1{
-        font-size:2rem;
+        font-size:2.2rem;
     }
 
     .video-map iframe{
-        height:250px;
+        height:260px;
     }
 }
 
+@media(max-width:600px){
+    .benefit-grid{
+        grid-template-columns:1fr;
+    }
+}
 </style>
 
 <div class="inbody-container">
 
     <div class="inbody-header">
-
-        <h1>InBody Body Composition Analysis</h1>
-
+        <h1>InBody Body Composition Analysis 📊</h1>
         <p>
             Discover what your body is really made of. Our advanced InBody
             assessment helps you understand your muscle mass, body fat,
             hydration levels, and overall fitness profile.
         </p>
-
     </div>
 
     <div class="inbody-section">
-
         <div class="inbody-card">
-
             <h2>What Does InBody Measure?</h2>
 
-            <p> Muscle Mass & Muscle Distribution</p>
-            <p>️ Body Fat Percentage</p>
-            <p>️ Visceral Fat Around Organs</p>
-            <p> Body Water Balance</p>
-            <p> Basal Metabolic Rate (BMR)</p>
-            <p> Segmental Lean Mass Analysis</p>
+            <p>💪 Muscle Mass & Muscle Distribution</p>
+            <p>⚖️ Body Fat Percentage</p>
+            <p>🫀 Visceral Fat Around Organs</p>
+            <p>💧 Body Water Balance</p>
+            <p>🔥 Basal Metabolic Rate (BMR)</p>
+            <p>📈 Segmental Lean Mass Analysis</p>
 
             <br>
 
             <h2>Why Take The Test?</h2>
 
-            <p> Personalized Workout Programs</p>
-            <p> Track Your Fitness Progress</p>
-            <p> Better Nutrition Planning</p>
-            <p> Set Realistic Fitness Goals</p>
-
+            <p>🎯 Personalized Workout Programs</p>
+            <p>📊 Track Your Fitness Progress</p>
+            <p>🥗 Better Nutrition Planning</p>
+            <p>🏆 Set Realistic Fitness Goals</p>
         </div>
 
         <div class="video-map">
-
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7166437905194!2d73.1620621!3d19.2075747!2m3!1f0!2f0!3f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79571c01e2a0b%3A0x647c353cd5d906d7!2sB.B.%20Fitness%20Crew!5e0!3m2!1sen!2sin!4v1771856198459!5m2!1sen!2sin"
-                loading="lazy">
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7166437905194!2d73.1620621!3d19.2075747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79571c01e2a0b%3A0x647c353cd5d906d7!2sB.B.%20Fitness%20Crew!5e0!3m2!1sen!2sin!4v1771856198459!5m2!1sen!2sin"
+                loading="lazy"
+                title="BB Fitness Crew Map Location">
             </iframe>
 
             <a class="video-thumbnail"
@@ -295,56 +324,46 @@
                href="https://www.youtube.com/watch?v=B6jIUOi8puk"
                target="_blank"
                rel="noopener noreferrer">
-                Watch the InBody video on YouTube
+                ▶️ Watch the InBody video on YouTube
             </a>
-
         </div>
-
     </div>
 
     <div class="benefits">
-
         <h2>Benefits of InBody Analysis</h2>
 
         <div class="benefit-grid">
-
             <div class="benefit-card">
-                <h3>Accurate Results</h3>
+                <h3>🎯 Accurate Results</h3>
                 <p>Detailed body composition analysis in minutes.</p>
             </div>
 
             <div class="benefit-card">
-                <h3>Goal Tracking</h3>
+                <h3>📈 Goal Tracking</h3>
                 <p>Measure your progress with scientific data.</p>
             </div>
 
             <div class="benefit-card">
-                <h3>Personalized Plans</h3>
+                <h3>🥗 Personalized Plans</h3>
                 <p>Workouts and nutrition based on your body.</p>
             </div>
 
             <div class="benefit-card">
-                <h3>Better Performance</h3>
+                <h3>⚡ Better Performance</h3>
                 <p>Optimize fitness results efficiently.</p>
             </div>
-
         </div>
-
     </div>
 
     <div class="cta">
-
         <h2>Book Your InBody Assessment Today</h2>
-
         <p>
             Get a complete picture of your fitness and start your
             transformation with BB Fitness Crew.
         </p>
-
         <a href="{% url 'contact' %}">
             Schedule Now
         </a>
-
     </div>
 
 </div>

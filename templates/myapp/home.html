@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}BB Fitness Crew{% endblock %}
+{% block title %}BB Fitness Crew | Home{% endblock %}
 
 {% block content %}
 
@@ -21,12 +21,12 @@
 .home-photo img{
     width:100%;
     height:auto;
-    border-radius:4px;
+    border-radius:8px;
     transition:transform .45s ease, filter .45s ease;
 }
 
 .home-photo:hover img{
-    transform:scale(1.025);
+    transform:scale(1.02);
     filter:saturate(1.08);
 }
 
@@ -38,16 +38,17 @@
 }
 
 .eyebrow{
-    color:#00aeff;
-    font-size:.8rem;
+    color: var(--accent-color);
+    font-size:.85rem;
     font-weight:700;
     text-transform:uppercase;
     margin-bottom:12px;
+    letter-spacing: 0.5px;
 }
 
 .home-intro h1,
 .try-intro h1{
-    color:#fff;
+    color: var(--heading-color);
     font-size:3rem;
     line-height:1.15;
     margin-bottom:16px;
@@ -55,13 +56,13 @@
 
 .home-intro h1 span,
 .try-intro h1 span{
-    color:#00aeff;
+    color: var(--accent-color);
 }
 
 .home-intro p:not(.eyebrow),
 .try-intro p:not(.eyebrow){
     max-width:680px;
-    color:#d4d4d4;
+    color: var(--muted-text);
     font-size:1.05rem;
     line-height:1.75;
     margin-bottom:24px;
@@ -78,7 +79,7 @@
 
 .hero-buttons{
     display:flex;
-    gap:12px;
+    gap:14px;
     flex-wrap:wrap;
 }
 
@@ -88,34 +89,45 @@
     align-items:center;
     justify-content:center;
     min-height:48px;
-    padding:12px 22px;
-    border:1px solid #00aeff;
-    border-radius:4px;
-    color:#fff;
+    padding:12px 24px;
+    border:1.5px solid var(--accent-color);
+    border-radius:6px;
     font-weight:600;
+    font-size:1rem;
     text-decoration:none;
-    transition:background-color .2s ease, color .2s ease, transform .2s ease;
+    transition:background-color .2s ease, color .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 
-.btn-primary,
+.btn-primary{
+    background: var(--accent-color);
+    color: #ffffff !important;
+}
+
 .btn-primary:hover,
 .btn-primary:focus-visible{
-    background:#00aeff;
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #ffffff !important;
+    transform:translateY(-2px);
+    box-shadow: 0 4px 18px var(--accent-glow);
+}
+
+.btn-secondary{
+    background: transparent;
+    color: var(--heading-color);
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus-visible{
-    background:#00aeff;
-}
-
-.btn-primary:hover,
-.btn-secondary:hover{
+    background: var(--accent-color);
+    color: #ffffff !important;
     transform:translateY(-2px);
+    box-shadow: 0 4px 18px var(--accent-glow);
 }
 
 .btn-primary:focus-visible,
 .btn-secondary:focus-visible{
-    outline:2px solid #fff;
+    outline:2px solid var(--accent-color);
     outline-offset:3px;
 }
 
@@ -125,16 +137,17 @@
     padding:24px;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    border-top:1px solid #292929;
-    border-bottom:1px solid #292929;
+    border-top:1px solid var(--border-color);
+    border-bottom:1px solid var(--border-color);
     animation:content-enter .6s .2s ease-out both;
 }
 
 .stat-box{
     padding:18px 24px;
     text-align:left;
-    border-left:1px solid #292929;
-    transition:background-color .2s ease;
+    border-left:1px solid var(--border-color);
+    border-radius:4px;
+    transition:background-color .2s ease, transform .2s ease;
 }
 
 .stat-box:first-child{
@@ -142,19 +155,20 @@
 }
 
 .stat-box:hover{
-    background:rgba(0,174,255,.08);
+    background: var(--accent-soft);
     transform:translateY(-3px);
 }
 
 .stat-box h2{
-    color:#00aeff;
-    font-size:1.8rem;
+    color: var(--accent-color);
+    font-size:2rem;
     margin-bottom:4px;
+    font-weight:750;
 }
 
 .stat-box p,
 .why-card p{
-    color:#d4d4d4;
+    color: var(--muted-text);
     line-height:1.7;
 }
 
@@ -164,9 +178,10 @@
 }
 
 .why h2{
-    color:#fff;
-    font-size:2rem;
+    color: var(--heading-color);
+    font-size:2.1rem;
     margin-bottom:28px;
+    font-weight:750;
 }
 
 .why-grid{
@@ -176,14 +191,19 @@
 }
 
 .why-card{
-    padding:20px 18px 12px 0;
-    border-top:2px solid #00aeff;
-    transition:transform .2s ease;
+    padding:26px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-color);
+    border-top:3px solid var(--accent-color);
+    border-radius:14px;
+    box-shadow: var(--card-shadow);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
 }
 
 .why-card:hover{
     transform:translateY(-3px);
-    border-color:#58caff;
+    border-top-color: var(--accent-hover);
+    box-shadow: var(--card-hover-shadow);
 }
 
 .why-card:nth-child(1){animation:content-enter .5s .08s ease-out both;}
@@ -195,24 +215,17 @@
 .stat-box:nth-child(3){animation:content-enter .5s .2s ease-out both;}
 .stat-box:nth-child(4){animation:content-enter .5s .26s ease-out both;}
 
-.stat-box,
-.why-card{
-    transition:transform .2s ease, background-color .2s ease, border-color .2s ease;
-}
-
 .why-card h3{
-    color:#00aeff;
+    color: var(--accent-color);
     margin:8px 0 10px;
+    font-size:1.25rem;
 }
 
 @media(max-width:768px){
     .home-page{margin:-15px;}
-
     .home-photo{padding:0 20px;}
-
     .home-intro,
     .why{padding:42px 20px;}
-
     .home-intro h1,
     .try-intro h1{font-size:2.2rem;}
 
@@ -224,7 +237,7 @@
     .stat-box{
         padding:16px 12px;
         border-left:0;
-        border-bottom:1px solid #292929;
+        border-bottom:1px solid var(--border-color);
     }
 
     .why-grid{grid-template-columns:1fr; gap:16px;}
@@ -267,60 +280,54 @@
         </div>
     </section>
 
-<section class="stats" aria-label="Gym highlights">
-
-    <div class="stat-box">
-        <h2>200+</h2>
-        <p>Members</p>
-    </div>
-
-    <div class="stat-box">
-        <h2>2+</h2>
-        <p>Years Experience</p>
-    </div>
-
-    <div class="stat-box">
-        <h2>100%</h2>
-        <p>Dedication</p>
-    </div>
-
-    <div class="stat-box">
-        <h2>24/7</h2>
-        <p>Motivation</p>
-    </div>
-
-</section>
-
-<section class="why">
-
-    <h2>Why Choose BB Fitness Crew?</h2>
-
-    <div class="why-grid">
-
-        <div class="why-card">
-            <h3> Modern Equipment</h3>
-            <p>
-                Premium gym machines and free weights for every fitness goal.
-            </p>
+    <section class="stats" aria-label="Gym highlights">
+        <div class="stat-box">
+            <h2>200+</h2>
+            <p>Members</p>
         </div>
 
-        <div class="why-card">
-            <h3> Expert Trainers</h3>
-            <p>
-                Professional guidance to help you achieve maximum results.
-            </p>
+        <div class="stat-box">
+            <h2>2+</h2>
+            <p>Years Experience</p>
         </div>
 
-        <div class="why-card">
-            <h3> Community Support</h3>
-            <p>
-                Train in a motivating environment surrounded by like-minded people.
-            </p>
+        <div class="stat-box">
+            <h2>100%</h2>
+            <p>Dedication</p>
         </div>
 
-    </div>
+        <div class="stat-box">
+            <h2>24/7</h2>
+            <p>Motivation</p>
+        </div>
+    </section>
 
-</section>
+    <section class="why">
+        <h2>Why Choose BB Fitness Crew?</h2>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <h3> Modern Equipment</h3>
+                <p>
+                    Premium gym machines and free weights for every fitness goal.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <h3> Expert Trainers</h3>
+                <p>
+                    Professional guidance to help you achieve maximum results.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <h3> Community Support</h3>
+                <p>
+                    Train in a motivating environment surrounded by like-minded people.
+                </p>
+            </div>
+        </div>
+    </section>
 </div>
 
 {% endblock %}
