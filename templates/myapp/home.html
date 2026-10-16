@@ -1,333 +1,776 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}BB Fitness Crew | Home{% endblock %}
+{% block title %}BB Fitness Crew | Build Your Best Body{% endblock %}
 
 {% block content %}
 
 <style>
-.home-page{
-    margin:-30px;
-}
-
-.home-photo{
-    max-width:1160px;
-    margin:0 auto;
-    padding:0 24px;
-    overflow:hidden;
-    animation:content-enter .6s ease-out both;
-}
-
-.home-photo img{
-    width:100%;
-    height:auto;
-    border-radius:8px;
-    transition:transform .45s ease, filter .45s ease;
-}
-
-.home-photo:hover img{
-    transform:scale(1.02);
-    filter:saturate(1.08);
-}
-
-.home-intro,
-.why{
-    max-width:1160px;
-    margin:0 auto;
-    padding:64px 24px 48px;
-}
-
-.eyebrow{
-    color: var(--accent-color);
-    font-size:.85rem;
-    font-weight:700;
-    text-transform:uppercase;
-    margin-bottom:12px;
-    letter-spacing: 0.5px;
-}
-
-.home-intro h1,
-.try-intro h1{
-    color: var(--heading-color);
-    font-size:3rem;
-    line-height:1.15;
-    margin-bottom:16px;
-}
-
-.home-intro h1 span,
-.try-intro h1 span{
-    color: var(--accent-color);
-}
-
-.home-intro p:not(.eyebrow),
-.try-intro p:not(.eyebrow){
-    max-width:680px;
-    color: var(--muted-text);
-    font-size:1.05rem;
-    line-height:1.75;
-    margin-bottom:24px;
-}
-
-.home-intro{
-    animation:content-enter .55s ease-out both;
-}
-
-@keyframes content-enter{
-    from{opacity:0; transform:translateY(14px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-.hero-buttons{
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-}
-
-.btn-primary,
-.btn-secondary{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:48px;
-    padding:12px 24px;
-    border:1.5px solid var(--accent-color);
-    border-radius:6px;
-    font-weight:600;
-    font-size:1rem;
-    text-decoration:none;
-    transition:background-color .2s ease, color .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-}
-
-.btn-primary{
-    background: var(--accent-color);
-    color: #ffffff !important;
-}
-
-.btn-primary:hover,
-.btn-primary:focus-visible{
-    background: var(--accent-hover);
-    border-color: var(--accent-hover);
-    color: #ffffff !important;
-    transform:translateY(-2px);
-    box-shadow: 0 4px 18px var(--accent-glow);
-}
-
-.btn-secondary{
-    background: transparent;
-    color: var(--heading-color);
-}
-
-.btn-secondary:hover,
-.btn-secondary:focus-visible{
-    background: var(--accent-color);
-    color: #ffffff !important;
-    transform:translateY(-2px);
-    box-shadow: 0 4px 18px var(--accent-glow);
-}
-
-.btn-primary:focus-visible,
-.btn-secondary:focus-visible{
-    outline:2px solid var(--accent-color);
-    outline-offset:3px;
-}
-
-.stats{
-    max-width:1160px;
-    margin:0 auto;
-    padding:24px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    border-top:1px solid var(--border-color);
-    border-bottom:1px solid var(--border-color);
-    animation:content-enter .6s .2s ease-out both;
-}
-
-.stat-box{
-    padding:18px 24px;
-    text-align:left;
-    border-left:1px solid var(--border-color);
-    border-radius:4px;
-    transition:background-color .2s ease, transform .2s ease;
-}
-
-.stat-box:first-child{
-    border-left:0;
-}
-
-.stat-box:hover{
-    background: var(--accent-soft);
-    transform:translateY(-3px);
-}
-
-.stat-box h2{
-    color: var(--accent-color);
-    font-size:2rem;
-    margin-bottom:4px;
-    font-weight:750;
-}
-
-.stat-box p,
-.why-card p{
-    color: var(--muted-text);
-    line-height:1.7;
-}
-
-.why{
-    padding-top:64px;
-    padding-bottom:76px;
-}
-
-.why h2{
-    color: var(--heading-color);
-    font-size:2.1rem;
-    margin-bottom:28px;
-    font-weight:750;
-}
-
-.why-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-}
-
-.why-card{
-    padding:26px;
-    background: var(--surface-card);
-    border: 1px solid var(--border-color);
-    border-top:3px solid var(--accent-color);
-    border-radius:14px;
-    box-shadow: var(--card-shadow);
-    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
-}
-
-.why-card:hover{
-    transform:translateY(-3px);
-    border-top-color: var(--accent-hover);
-    box-shadow: var(--card-hover-shadow);
-}
-
-.why-card:nth-child(1){animation:content-enter .5s .08s ease-out both;}
-.why-card:nth-child(2){animation:content-enter .5s .16s ease-out both;}
-.why-card:nth-child(3){animation:content-enter .5s .24s ease-out both;}
-
-.stat-box:nth-child(1){animation:content-enter .5s .08s ease-out both;}
-.stat-box:nth-child(2){animation:content-enter .5s .14s ease-out both;}
-.stat-box:nth-child(3){animation:content-enter .5s .2s ease-out both;}
-.stat-box:nth-child(4){animation:content-enter .5s .26s ease-out both;}
-
-.why-card h3{
-    color: var(--accent-color);
-    margin:8px 0 10px;
-    font-size:1.25rem;
-}
-
-@media(max-width:768px){
-    .home-page{margin:-15px;}
-    .home-photo{padding:0 20px;}
-    .home-intro,
-    .why{padding:42px 20px;}
-    .home-intro h1,
-    .try-intro h1{font-size:2.2rem;}
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-        padding:14px 20px;
+    /* Hero Banner Area */
+    .hero-banner-wrapper {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        background: var(--surface-card);
+        margin-bottom: 45px;
     }
 
-    .stat-box{
-        padding:16px 12px;
-        border-left:0;
-        border-bottom:1px solid var(--border-color);
+    .hero-banner-wrapper img {
+        width: 100%;
+        height: auto;
+        max-height: 480px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
     }
 
-    .why-grid{grid-template-columns:1fr; gap:16px;}
-}
+    .hero-banner-wrapper:hover img {
+        transform: scale(1.02);
+    }
 
-@media(prefers-reduced-motion:reduce){
-    .home-photo,
-    .home-intro,
-    .stats,
-    .stat-box,
-    .why-card{animation:none;}
-    .home-photo img{transition:none;}
-    .home-photo:hover img,
-    .stat-box:hover,
-    .why-card:hover,
-    .btn-primary:hover,
-    .btn-secondary:hover{transform:none;}
-    .btn-primary,
-    .btn-secondary,
-    .stat-box,
-    .why-card{transition:none;}
-}
+    /* Floating Badges on Hero Banner */
+    .hero-floating-badges {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        pointer-events: none;
+    }
+
+    .floating-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: rgba(14, 20, 30, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 30px;
+        color: #ffffff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Hero Text Intro */
+    .hero-intro {
+        margin-bottom: 50px;
+    }
+
+    .hero-intro h1 {
+        font-size: 3.2rem;
+        line-height: 1.15;
+        margin-bottom: 18px;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .hero-intro h1 span {
+        color: var(--accent-color);
+    }
+
+    .hero-intro p.lead-text {
+        max-width: 720px;
+        color: var(--muted-text);
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 28px;
+    }
+
+    .hero-cta-group {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 52px;
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-hero-primary {
+        background: var(--accent-color);
+        color: #ffffff !important;
+        border: 1.5px solid var(--accent-color);
+        box-shadow: 0 4px 18px var(--accent-glow);
+    }
+
+    .btn-hero-primary:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px var(--accent-glow);
+    }
+
+    .btn-hero-secondary {
+        background: var(--surface-card);
+        color: var(--heading-color);
+        border: 1.5px solid var(--border-color);
+    }
+
+    .btn-hero-secondary:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px var(--accent-soft);
+    }
+
+    /* Interactive 4 Pillars Grid */
+    .section-title-wrap {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .section-title-wrap h2 {
+        font-size: 2.2rem;
+        font-weight: 750;
+        margin-bottom: 10px;
+    }
+
+    .section-title-wrap p {
+        color: var(--muted-text);
+        font-size: 1.05rem;
+    }
+
+    .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 60px;
+    }
+
+    .pillar-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 26px 20px;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pillar-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+        box-shadow: var(--card-hover-shadow);
+    }
+
+    .pillar-icon {
+        font-size: 2.2rem;
+        margin-bottom: 16px;
+        display: inline-block;
+    }
+
+    .pillar-card h3 {
+        font-size: 1.25rem;
+        color: var(--heading-color);
+        margin-bottom: 8px;
+        font-weight: 700;
+        transition: color 0.2s ease;
+    }
+
+    .pillar-card:hover h3 {
+        color: var(--accent-color);
+    }
+
+    .pillar-card p {
+        color: var(--muted-text);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+
+    .pillar-link {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: gap 0.2s ease;
+    }
+
+    .pillar-card:hover .pillar-link {
+        gap: 8px;
+    }
+
+    /* Interactive BMI & Fitness Widget */
+    .bmi-section {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 38px;
+        margin-bottom: 60px;
+        box-shadow: var(--card-shadow);
+    }
+
+    .bmi-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 36px;
+        align-items: center;
+    }
+
+    .bmi-info h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        font-weight: 750;
+    }
+
+    .bmi-info p {
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    .bmi-calculator {
+        background: var(--surface-elevated);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 24px;
+    }
+
+    .bmi-inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+
+    .bmi-field label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--heading-color);
+    }
+
+    .bmi-field input {
+        width: 100%;
+        padding: 12px 14px;
+        background: var(--surface-input);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-color);
+        font-size: 0.95rem;
+        box-sizing: border-box;
+    }
+
+    .btn-calc {
+        width: 100%;
+        padding: 12px;
+        background: var(--accent-color);
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        margin-bottom: 16px;
+    }
+
+    .btn-calc:hover {
+        background: var(--accent-hover);
+    }
+
+    .bmi-result-box {
+        display: none;
+        padding: 16px;
+        border-radius: 10px;
+        background: var(--surface-card);
+        border: 1px solid var(--accent-color);
+        text-align: center;
+    }
+
+    .bmi-score {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        margin-bottom: 4px;
+    }
+
+    .bmi-category {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--heading-color);
+        margin-bottom: 6px;
+    }
+
+    .bmi-tip {
+        font-size: 0.85rem;
+        color: var(--muted-text);
+        margin: 0;
+    }
+
+    /* Stats Section */
+    .stats-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 60px;
+    }
+
+    .stat-tile {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 24px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .stat-tile:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent-color);
+    }
+
+    .stat-icon {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        line-height: 1.2;
+        margin-bottom: 4px;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: var(--muted-text);
+        font-weight: 600;
+    }
+
+    /* Why Us Grid */
+    .why-section {
+        margin-bottom: 60px;
+    }
+
+    .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .why-card {
+        padding: 28px;
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-top: 3px solid var(--accent-color);
+        border-radius: 16px;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .why-card:hover {
+        transform: translateY(-4px);
+        border-top-color: var(--accent-hover);
+        box-shadow: var(--card-hover-shadow);
+    }
+
+    .why-card h3 {
+        color: var(--accent-color);
+        margin-bottom: 10px;
+        font-size: 1.25rem;
+    }
+
+    .why-card p {
+        color: var(--muted-text);
+        line-height: 1.7;
+    }
+
+    /* Interactive FAQs Section */
+    .faq-section {
+        margin-bottom: 40px;
+    }
+
+    .faq-list {
+        max-width: 860px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .faq-item {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: border-color 0.2s ease;
+    }
+
+    .faq-item:hover {
+        border-color: var(--accent-color);
+    }
+
+    .faq-question {
+        width: 100%;
+        padding: 18px 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: none;
+        border: none;
+        color: var(--heading-color);
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .faq-toggle-icon {
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        transition: transform 0.25s ease;
+    }
+
+    .faq-item.active .faq-toggle-icon {
+        transform: rotate(45deg);
+    }
+
+    .faq-answer {
+        display: none;
+        padding: 0 22px 20px;
+        color: var(--muted-text);
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+
+    .faq-item.active .faq-answer {
+        display: block;
+    }
+
+    @media (max-width: 960px) {
+        .hero-intro h1 {
+            font-size: 2.3rem;
+        }
+
+        .pillars-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .bmi-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .why-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .hero-floating-badges {
+            position: static;
+            padding: 12px;
+            background: var(--surface-card);
+        }
+    }
+
+    @media (max-width: 580px) {
+        .pillars-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .bmi-inputs {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 
-<div class="home-page">
-    <section class="home-photo" aria-label="BB Fitness Crew gym">
-        <img src="{% static 'myapp/images/home.png' %}" alt="BB Fitness Crew gym and fitness team">
-    </section>
+<div class="page-container">
 
-    <section class="home-intro">
-        <p class="eyebrow">BB Fitness Crew / Ulhasnagar</p>
-        <h1>Build Your <span>Best Body</span></h1>
-        <p>
-            Join BB Fitness Crew and transform your body with expert guidance,
-            modern equipment, and a motivating fitness environment.
+    <!-- Hero Image Banner with Floating Badges -->
+    <div class="hero-banner-wrapper">
+        <img src="{% static 'myapp/images/home.png' %}" alt="BB Fitness Crew gym and athletes">
+        <div class="hero-floating-badges">
+            <span class="floating-pill">⭐ 4.9/5 Rating (200+ Members)</span>
+            <span class="floating-pill">🏆 Ulhasnagar's Top Gym</span>
+            <span class="floating-pill">💪 Certified Trainers</span>
+        </div>
+    </div>
+
+    <!-- Hero Intro -->
+    <section class="hero-intro">
+        <span class="badge">🔥 Ulhasnagar East / Netaji Chowk</span>
+        <h1>Build Your <span>Best Body</span> & Mind</h1>
+        <p class="lead-text">
+            Join BB Fitness Crew and transform your fitness with state-of-the-art machines,
+            certified 1-on-1 personal coaches, and a high-energy community dedicated to your success.
         </p>
-        <div class="hero-buttons">
-            <a href="{% url 'contact' %}" class="btn-primary">Join Now</a>
-            <a href="{% url 'tryus' %}" class="btn-secondary">Free Trial</a>
+
+        <div class="hero-cta-group">
+            <a href="{% url 'tryus' %}" class="btn-hero-primary">
+                Book Free Gym Trial 🚀
+            </a>
+            <a href="{% url 'contact' %}" class="btn-hero-secondary">
+                Join Us Today →
+            </a>
+            <a href="{% url 'location' %}" class="btn-hero-secondary">
+                📍 Visit Location
+            </a>
         </div>
     </section>
 
-    <section class="stats" aria-label="Gym highlights">
-        <div class="stat-box">
-            <h2>200+</h2>
-            <p>Members</p>
-        </div>
+    <!-- 4 Core Pillars Grid -->
+    <div class="section-title-wrap">
+        <h2>Everything You Need To Win</h2>
+        <p>Comprehensive fitness solutions tailored to every level</p>
+    </div>
 
-        <div class="stat-box">
-            <h2>2+</h2>
-            <p>Years Experience</p>
-        </div>
+    <div class="pillars-grid">
+        <a href="{% url 'tryus' %}" class="pillar-card">
+            <div>
+                <span class="pillar-icon">🏋️</span>
+                <h3>Gym Training</h3>
+                <p>Heavy duty free weights, resistance machines, and full cardio zone.</p>
+            </div>
+            <span class="pillar-link">Explore Facility →</span>
+        </a>
 
-        <div class="stat-box">
-            <h2>100%</h2>
-            <p>Dedication</p>
-        </div>
+        <a href="{% url 'pt' %}" class="pillar-card">
+            <div>
+                <span class="pillar-icon">👥</span>
+                <h3>Personal Training</h3>
+                <p>One-on-one tailored coaching for accelerated fat loss & muscle gain.</p>
+            </div>
+            <span class="pillar-link">Meet Coaches →</span>
+        </a>
 
-        <div class="stat-box">
-            <h2>24/7</h2>
-            <p>Motivation</p>
+        <a href="{% url 'inbody' %}" class="pillar-card">
+            <div>
+                <span class="pillar-icon">📊</span>
+                <h3>InBody Analysis</h3>
+                <p>Clinical body composition scanning to track muscle, fat & metabolic health.</p>
+            </div>
+            <span class="pillar-link">View Analysis →</span>
+        </a>
+
+        <a href="{% url 'service' %}" class="pillar-card">
+            <div>
+                <span class="pillar-icon">🧘</span>
+                <h3>Recovery Therapy</h3>
+                <p>Sports massage and mobility therapy to recover faster and prevent injury.</p>
+            </div>
+            <span class="pillar-link">Book Recovery →</span>
+        </a>
+    </div>
+
+    <!-- Interactive Live BMI Calculator -->
+    <section class="bmi-section">
+        <div class="bmi-grid">
+            <div class="bmi-info">
+                <span class="badge">⚡ Interactive Tool</span>
+                <h2>Check Your BMI Instantly</h2>
+                <p>
+                    Body Mass Index (BMI) is a quick benchmark to understand your body composition.
+                    Enter your details to see your score and personalized gym recommendation.
+                </p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <span style="font-size: 0.85rem; color: var(--muted-text);">✓ Instant Calculation</span>
+                    <span style="font-size: 0.85rem; color: var(--muted-text);">✓ Custom Fitness Recommendation</span>
+                </div>
+            </div>
+
+            <div class="bmi-calculator">
+                <div class="bmi-inputs">
+                    <div class="bmi-field">
+                        <label for="bmiHeight">Height (cm)</label>
+                        <input type="number" id="bmiHeight" placeholder="e.g. 175" min="100" max="250">
+                    </div>
+                    <div class="bmi-field">
+                        <label for="bmiWeight">Weight (kg)</label>
+                        <input type="number" id="bmiWeight" placeholder="e.g. 70" min="30" max="250">
+                    </div>
+                </div>
+
+                <button type="button" class="btn-calc" onclick="calculateBMI()">
+                    Calculate My BMI 🎯
+                </button>
+
+                <div class="bmi-result-box" id="bmiResultBox">
+                    <div class="bmi-score" id="bmiScoreText">--</div>
+                    <div class="bmi-category" id="bmiCategoryText">Category</div>
+                    <p class="bmi-tip" id="bmiTipText">Tip</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="why">
-        <h2>Why Choose BB Fitness Crew?</h2>
+    <!-- Stats Row -->
+    <div class="stats-row">
+        <div class="stat-tile">
+            <div class="stat-icon">👥</div>
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Active Members</div>
+        </div>
+        <div class="stat-tile">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-number">2+</div>
+            <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div class="stat-tile">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Dedication to Results</div>
+        </div>
+        <div class="stat-tile">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Member Motivation</div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Grid -->
+    <section class="why-section">
+        <div class="section-title-wrap">
+            <h2>Why Choose BB Fitness Crew?</h2>
+            <p>Built for people who want real, lasting transformations</p>
+        </div>
 
         <div class="why-grid">
             <div class="why-card">
-                <h3> Modern Equipment</h3>
+                <h3>🏋️ World-Class Equipment</h3>
                 <p>
-                    Premium gym machines and free weights for every fitness goal.
+                    From specialized plate-loaded machines to a vast dumbbell collection,
+                    we ensure no waiting in line for key lifts.
                 </p>
             </div>
 
             <div class="why-card">
-                <h3> Expert Trainers</h3>
+                <h3>🎯 Professional Trainers</h3>
                 <p>
-                    Professional guidance to help you achieve maximum results.
+                    Our certified instructors focus on form, safety, and steady progressive
+                    overload to get you results without burnout.
                 </p>
             </div>
 
             <div class="why-card">
-                <h3> Community Support</h3>
+                <h3>🤝 Positive Community</h3>
                 <p>
-                    Train in a motivating environment surrounded by like-minded people.
+                    Train in an inspiring, women-friendly environment where every member
+                    encourages and celebrates each other's wins.
                 </p>
             </div>
         </div>
     </section>
+
+    <!-- Interactive FAQs -->
+    <section class="faq-section">
+        <div class="section-title-wrap">
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know before visiting</p>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" type="button" onclick="toggleFaq(this)">
+                    <span>Can absolute beginners join BB Fitness Crew?</span>
+                    <span class="faq-toggle-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes! Over 60% of our members started with zero gym experience. Our friendly staff will walk you through equipment usage and proper exercise techniques on your first day.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" onclick="toggleFaq(this)">
+                    <span>What are your daily gym operating hours?</span>
+                    <span class="faq-toggle-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    We are open Monday through Saturday from 6:00 AM to 11:30 PM, giving you maximum flexibility to work out before work, during lunch, or late at night.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" onclick="toggleFaq(this)">
+                    <span>Is the Free Trial really 100% free with no commitment?</span>
+                    <span class="faq-toggle-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Absolutely! You can visit our gym, try the equipment, and meet our coaches completely free with zero pressure to buy.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" onclick="toggleFaq(this)">
+                    <span>What does the InBody scan include?</span>
+                    <span class="faq-toggle-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    The InBody scan measures your exact skeletal muscle mass, body fat percentage, visceral fat level, basal metabolic rate, and muscle distribution across arms, legs, and trunk.
+                </div>
+            </div>
+        </div>
+    </section>
+
 </div>
+
+<script>
+    function calculateBMI() {
+        var h = parseFloat(document.getElementById('bmiHeight').value);
+        var w = parseFloat(document.getElementById('bmiWeight').value);
+        var resultBox = document.getElementById('bmiResultBox');
+        var scoreText = document.getElementById('bmiScoreText');
+        var catText = document.getElementById('bmiCategoryText');
+        var tipText = document.getElementById('bmiTipText');
+
+        if (!h || !w || h <= 0 || w <= 0) {
+            alert('Please enter valid height and weight values.');
+            return;
+        }
+
+        var heightInMeters = h / 100;
+        var bmi = (w / (heightInMeters * heightInMeters)).toFixed(1);
+        resultBox.style.display = 'block';
+        scoreText.textContent = bmi + ' BMI';
+
+        if (bmi < 18.5) {
+            catText.textContent = 'Category: Underweight';
+            tipText.textContent = 'Recommended: Lean muscle building workout + caloric surplus nutrition plan.';
+        } else if (bmi < 24.9) {
+            catText.textContent = 'Category: Healthy Weight 💪';
+            tipText.textContent = 'Great shape! Recommended: Progressive strength training and athletic conditioning.';
+        } else if (bmi < 29.9) {
+            catText.textContent = 'Category: Overweight';
+            tipText.textContent = 'Recommended: Fat loss & metabolic conditioning + structured resistance training.';
+        } else {
+            catText.textContent = 'Category: High BMI';
+            tipText.textContent = 'Recommended: Guided personal training and personalized cardio & nutrition roadmap.';
+        }
+    }
+
+    function toggleFaq(button) {
+        var item = button.closest('.faq-item');
+        item.classList.toggle('active');
+    }
+</script>
 
 {% endblock %}

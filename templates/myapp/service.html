@@ -1,326 +1,481 @@
 {% extends 'base.html' %}
 
-{% block title %}BB Fitness Crew | Recovery Services{% endblock %}
+{% block title %}BB Fitness Crew | Recovery & Massage Therapy{% endblock %}
 
 {% block content %}
 
 <style>
-.recovery-container{
-    max-width:1200px;
-    margin:auto;
-    padding:60px 20px;
-}
-
-.recovery-header{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.recovery-header h1{
-    color: var(--accent-color);
-    font-size:3rem;
-    margin-bottom:15px;
-    font-weight:750;
-}
-
-.recovery-header p{
-    color: var(--muted-text);
-    max-width:800px;
-    margin:auto;
-    line-height:1.8;
-    font-size:1.05rem;
-}
-
-.recovery-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:35px;
-}
-
-.recovery-card{
-    background: var(--surface-card);
-    padding:35px;
-    border-radius:20px;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
-}
-
-.recovery-card:hover{
-    box-shadow: var(--card-hover-shadow);
-}
-
-.recovery-card h2{
-    color: var(--accent-color);
-    margin-bottom:20px;
-    font-size:1.6rem;
-    font-weight:750;
-}
-
-.recovery-card p{
-    color: var(--muted-text);
-    line-height:1.8;
-    margin-bottom:18px;
-}
-
-.feature-list{
-    margin-top:20px;
-}
-
-.feature-list div{
-    padding:14px 16px;
-    margin-bottom:12px;
-    background: var(--surface-elevated);
-    color: var(--heading-color);
-    border:1px solid var(--border-color);
-    border-radius:12px;
-    font-weight:500;
-    transition:background-color .25s ease, border-color .25s ease;
-}
-
-.form-card form{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-}
-
-.form-card input,
-.form-card select{
-    width:100%;
-    padding:14px 16px;
-    border:1px solid var(--border-color);
-    border-radius:10px;
-    background: var(--surface-input);
-    color: var(--text-color);
-    font-family: inherit;
-    font-size:0.95rem;
-    box-sizing:border-box;
-    transition:border-color .25s ease, box-shadow .25s ease, background-color .25s ease;
-}
-
-.form-card select option{
-    background: var(--surface-card);
-    color: var(--text-color);
-}
-
-.form-card input::placeholder{
-    color: var(--muted-text);
-    opacity:0.7;
-}
-
-.form-card input:focus,
-.form-card select:focus{
-    outline:none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-.book-btn{
-    background: var(--accent-color);
-    color: #ffffff !important;
-    border:none;
-    padding:15px;
-    border-radius:50px;
-    font-weight:600;
-    font-size:1rem;
-    cursor:pointer;
-    box-shadow: 0 4px 15px var(--accent-glow);
-    transition:background-color .25s ease, transform .2s ease, box-shadow .25s ease;
-}
-
-.book-btn:hover{
-    background: var(--accent-hover);
-    transform:translateY(-2px);
-    box-shadow: 0 8px 25px var(--accent-glow);
-}
-
-.whatsapp-btn{
-    display:block;
-    text-align:center;
-    background:#25D366;
-    color:#ffffff !important;
-    text-decoration:none;
-    padding:15px;
-    border-radius:50px;
-    font-weight:600;
-    font-size:1rem;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    transition:transform .2s ease, box-shadow .2s ease;
-}
-
-.whatsapp-btn:hover{
-    transform:translateY(-2px);
-    box-shadow: 0 8px 22px rgba(37, 211, 102, 0.6);
-}
-
-.benefits{
-    margin-top:60px;
-}
-
-.benefits h2{
-    text-align:center;
-    color: var(--accent-color);
-    margin-bottom:30px;
-    font-size:2rem;
-    font-weight:750;
-}
-
-.benefits-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.benefit-card{
-    background: var(--surface-card);
-    border:1px solid var(--border-color);
-    padding:28px 20px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow: var(--card-shadow);
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
-}
-
-.benefit-card:hover{
-    transform:translateY(-8px);
-    box-shadow: var(--card-hover-shadow);
-    border-color: var(--accent-color);
-}
-
-.benefit-card h3{
-    color: var(--accent-color);
-    margin-bottom:10px;
-    font-size:1.2rem;
-}
-
-.benefit-card p{
-    color: var(--muted-text);
-    line-height:1.6;
-}
-
-@media(max-width:900px){
-    .recovery-grid{
-        grid-template-columns:1fr;
+    .service-hero {
+        text-align: center;
+        margin-bottom: 45px;
     }
 
-    .benefits-grid{
-        grid-template-columns:repeat(2, 1fr);
+    .service-hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 12px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
     }
 
-    .recovery-header h1{
-        font-size:2.2rem;
+    .service-hero h1 span {
+        color: var(--accent-color);
     }
-}
 
-@media(max-width:600px){
-    .benefits-grid{
-        grid-template-columns:1fr;
+    .service-hero p {
+        color: var(--muted-text);
+        max-width: 680px;
+        margin: 0 auto;
+        font-size: 1.05rem;
+        line-height: 1.7;
     }
-}
+
+    .service-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 36px;
+        align-items: start;
+        margin-bottom: 60px;
+    }
+
+    .service-info-panel {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 36px;
+        box-shadow: var(--card-shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .service-info-panel h2 {
+        font-size: 1.8rem;
+        font-weight: 750;
+        color: var(--heading-color);
+    }
+
+    .service-info-panel p {
+        color: var(--muted-text);
+        line-height: 1.7;
+    }
+
+    .feature-checklist {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 6px 0 10px;
+    }
+
+    .checklist-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        background: var(--surface-elevated);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--heading-color);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .checklist-item:hover {
+        transform: translateX(4px);
+        border-color: var(--accent-color);
+    }
+
+    .checklist-icon {
+        color: var(--accent-color);
+        font-size: 1.2rem;
+    }
+
+    .whatsapp-direct-box {
+        margin-top: 10px;
+    }
+
+    .btn-wa-full {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 20px;
+        background: #25D366;
+        color: #ffffff !important;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-wa-full:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6);
+    }
+
+    /* Booking Form Card */
+    .service-form-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 36px;
+        box-shadow: var(--card-shadow);
+    }
+
+    .service-form-card h2 {
+        font-size: 1.8rem;
+        font-weight: 750;
+        margin-bottom: 8px;
+    }
+
+    .service-form-card p.subhead {
+        color: var(--muted-text);
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+    }
+
+    /* Interactive Service Selector Chips */
+    .service-chips-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .service-chips-wrapper label {
+        display: block;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--heading-color);
+        margin-bottom: 10px;
+    }
+
+    .service-chips {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .service-chip-btn {
+        padding: 14px;
+        background: var(--surface-input);
+        border: 1.5px solid var(--border-color);
+        border-radius: 12px;
+        color: var(--text-color);
+        font-size: 0.92rem;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+
+    .service-chip-btn:hover {
+        border-color: var(--accent-color);
+    }
+
+    .service-chip-btn.active {
+        background: var(--accent-soft);
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+        box-shadow: 0 0 12px var(--accent-soft);
+    }
+
+    .booking-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .booking-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .booking-field label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--heading-color);
+    }
+
+    .booking-field input,
+    .booking-field select {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 0.95rem;
+        background: var(--surface-input);
+        color: var(--text-color);
+        font-family: inherit;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease;
+    }
+
+    .booking-field select option {
+        background: var(--surface-card);
+        color: var(--text-color);
+    }
+
+    .booking-field input:focus,
+    .booking-field select:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .btn-submit-booking {
+        padding: 15px;
+        background: var(--accent-color);
+        color: #ffffff !important;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 4px 18px var(--accent-glow);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        margin-top: 6px;
+    }
+
+    .btn-submit-booking:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    /* Benefits Section */
+    .benefits-title {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 750;
+        margin-bottom: 12px;
+    }
+
+    .benefits-subtitle {
+        text-align: center;
+        color: var(--muted-text);
+        margin-bottom: 35px;
+    }
+
+    .recovery-benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .recovery-benefit-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 18px;
+        padding: 26px 20px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .recovery-benefit-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+    }
+
+    .recovery-icon {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+        display: inline-block;
+    }
+
+    .recovery-benefit-card h3 {
+        color: var(--heading-color);
+        font-size: 1.15rem;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .recovery-benefit-card p {
+        color: var(--muted-text);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 960px) {
+        .service-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .recovery-benefits-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 540px) {
+        .recovery-benefits-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .service-chips {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 
-<div class="recovery-container">
+<div class="page-container">
 
-    <div class="recovery-header">
-        <h1>Recovery & Massage Therapy 🧘</h1>
+    <div class="service-hero">
+        <span class="badge">🧘 Rest • Recover • Rebuild</span>
+        <h1>Recovery & <span>Massage Therapy</span></h1>
         <p>
-            Train harder, recover faster, and perform better. Our recovery
-            services help reduce muscle soreness, improve flexibility,
-            and accelerate your fitness progress.
+            Train harder, prevent fatigue, and bounce back faster. Our specialized recovery
+            therapy relieves muscle knots, improves joint mobility, and promotes deep recovery.
         </p>
     </div>
 
-    <div class="recovery-grid">
-        <div class="recovery-card">
-            <h2>Why Recovery Matters?</h2>
+    <div class="service-layout">
+
+        <!-- Left Column: Why Recovery Matters -->
+        <div class="service-info-panel">
+            <h2>Why Recovery Matters</h2>
             <p>
-                Recovery is a crucial part of every fitness journey.
-                Proper muscle recovery improves performance, prevents
-                injuries, and helps your body adapt to training.
+                Muscle growth and fat loss happen during recovery, not just in the gym.
+                Targeted therapeutic sports massage alleviates DOMS (delayed onset muscle soreness),
+                boosts blood circulation, and prevents overuse injuries.
             </p>
 
-            <div class="feature-list">
-                <div>⚡ Faster Muscle Recovery</div>
-                <div>💆 Reduced Muscle Soreness</div>
-                <div>🤸 Better Mobility & Flexibility</div>
-                <div>🔥 Improved Athletic Performance</div>
-                <div>🛡️ Lower Risk of Injury</div>
+            <div class="feature-checklist">
+                <div class="checklist-item">
+                    <span class="checklist-icon">⚡</span>
+                    <span>Faster Muscle Fiber Repair</span>
+                </div>
+                <div class="checklist-item">
+                    <span class="checklist-icon">💆</span>
+                    <span>Deep Knot & Soreness Relief</span>
+                </div>
+                <div class="checklist-item">
+                    <span class="checklist-icon">🤸</span>
+                    <span>Enhanced Range of Motion & Mobility</span>
+                </div>
+                <div class="checklist-item">
+                    <span class="checklist-icon">🛡️</span>
+                    <span>Lower Risk of Strains & Sprains</span>
+                </div>
+            </div>
+
+            <div class="whatsapp-direct-box">
+                <a href="https://wa.me/918788948680?text=Hi%20BB%20Fitness%20Crew!%20I%20want%20to%20book%20a%20recovery%20massage%20session."
+                   target="_blank" rel="noopener noreferrer" class="btn-wa-full">
+                    💬 Instant WhatsApp Booking
+                </a>
             </div>
         </div>
 
-        <div class="recovery-card form-card">
-            <h2>Book Your Recovery Session</h2>
+        <!-- Right Column: Interactive Booking Form -->
+        <div class="service-form-card">
+            <h2>Schedule Your Session 🗓️</h2>
+            <p class="subhead">Select your preferred massage and we will confirm your appointment via WhatsApp.</p>
 
-            <form method="post" action="{% url 'service' %}">
+            <form method="post" action="{% url 'service' %}" class="booking-form">
                 {% csrf_token %}
 
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Full Name"
-                    required>
+                <!-- Interactive Chips for Service Selection -->
+                <div class="service-chips-wrapper">
+                    <label>Choose Recovery Service:</label>
+                    <div class="service-chips">
+                        <button type="button" class="service-chip-btn active" onclick="pickService(this, 'Full Body Massage')">
+                            💆 Full Body Massage
+                        </button>
+                        <button type="button" class="service-chip-btn" onclick="pickService(this, 'Half Body Massage')">
+                            🎯 Half Body Massage
+                        </button>
+                    </div>
+                </div>
 
-                <input
-                    type="tel"
-                    name="phonenumber"
-                    placeholder="Phone Number"
-                    required>
+                <div class="booking-field">
+                    <label for="clientName">Full Name</label>
+                    <input
+                        type="text"
+                        id="clientName"
+                        name="name"
+                        placeholder="e.g. Gaurav Thorve"
+                        required>
+                </div>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email (Optional)">
+                <div class="booking-field">
+                    <label for="clientPhone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="clientPhone"
+                        name="phonenumber"
+                        placeholder="e.g. 8788948680"
+                        required>
+                </div>
 
-                <select name="massage_type" required>
-                    <option value="">Choose Recovery Service</option>
-                    <option value="Full Body Massage">
-                        Full Body Massage
-                    </option>
-                    <option value="Half Body Massage">
-                        Half Body Massage
-                    </option>
-                </select>
+                <div class="booking-field">
+                    <label for="clientEmail">Email (Optional)</label>
+                    <input
+                        type="email"
+                        id="clientEmail"
+                        name="email"
+                        placeholder="e.g. gaurav@example.com">
+                </div>
 
-                <button type="submit" class="book-btn">
-                    Book Recovery Session
+                <div class="booking-field">
+                    <label for="massageSelect">Confirmed Service</label>
+                    <select name="massage_type" id="massageSelect" required>
+                        <option value="Full Body Massage" selected>Full Body Massage</option>
+                        <option value="Half Body Massage">Half Body Massage</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit-booking">
+                    Confirm & Book Session 🚀
                 </button>
-
-                <a
-                    href="https://wa.me/918788948680?text=Hi%20I%20want%20to%20book%20a%20recovery%20session"
-                    target="_blank"
-                    class="whatsapp-btn">
-                    WhatsApp Booking
-                </a>
             </form>
         </div>
+
     </div>
 
-    <div class="benefits">
-        <h2>Benefits of Recovery Therapy</h2>
+    <!-- Benefits Section -->
+    <h2 class="benefits-title">The Science of Muscle Recovery</h2>
+    <p class="benefits-subtitle">Keep your body operating at peak physiological performance</p>
 
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <h3>⚡ Rapid Recovery</h3>
-                <p>Heal muscles and reduce fatigue faster.</p>
-            </div>
+    <div class="recovery-benefits-grid">
+        <div class="recovery-benefit-card">
+            <span class="recovery-icon">⚡</span>
+            <h3>Rapid Healing</h3>
+            <p>Flush metabolic waste and accelerate protein synthesis.</p>
+        </div>
 
-            <div class="benefit-card">
-                <h3>🏆 Peak Performance</h3>
-                <p>Maintain peak performance consistently.</p>
-            </div>
+        <div class="recovery-benefit-card">
+            <span class="recovery-icon">🏆</span>
+            <h3>Peak Output</h3>
+            <p>Return to your next workout session feeling fresh and energetic.</p>
+        </div>
 
-            <div class="benefit-card">
-                <h3>🛡️ Injury Prevention</h3>
-                <p>Protect joints and muscles from strain.</p>
-            </div>
+        <div class="recovery-benefit-card">
+            <span class="recovery-icon">🛡️</span>
+            <h3>Joint Safety</h3>
+            <p>Release tight fascia around shoulders, hips, and knees.</p>
+        </div>
 
-            <div class="benefit-card">
-                <h3>🌿 Deep Relaxation</h3>
-                <p>Reduce stress and improve overall wellbeing.</p>
-            </div>
+        <div class="recovery-benefit-card">
+            <span class="recovery-icon">🌿</span>
+            <h3>Stress Relief</h3>
+            <p>Lower cortisol levels and promote restorative sleep quality.</p>
         </div>
     </div>
 
 </div>
+
+<script>
+    function pickService(button, serviceName) {
+        document.querySelectorAll('.service-chip-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        button.classList.add('active');
+
+        var select = document.getElementById('massageSelect');
+        if (select) {
+            select.value = serviceName;
+        }
+    }
+</script>
 
 {% endblock %}

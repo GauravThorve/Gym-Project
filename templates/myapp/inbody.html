@@ -1,368 +1,432 @@
 {% extends 'base.html' %}
 
-{% block title %}BB Fitness Crew | InBody Analysis{% endblock %}
+{% block title %}BB Fitness Crew | InBody Clinical Body Composition Analysis{% endblock %}
 
 {% block content %}
 
 <style>
-.inbody-container{
-    max-width:1300px;
-    margin:auto;
-    padding:60px 20px;
-}
-
-.inbody-header{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.inbody-header h1{
-    font-size:3rem;
-    color: var(--accent-color);
-    margin-bottom:15px;
-    font-weight:750;
-}
-
-.inbody-header p{
-    color: var(--muted-text);
-    max-width:800px;
-    margin:auto;
-    line-height:1.8;
-    font-size:1.05rem;
-}
-
-.inbody-section{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:35px;
-}
-
-.inbody-card{
-    background: var(--surface-card);
-    border-radius:20px;
-    padding:35px;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
-}
-
-.inbody-card:hover{
-    box-shadow: var(--card-hover-shadow);
-}
-
-.inbody-card h2{
-    color: var(--accent-color);
-    margin-bottom:20px;
-    font-size:1.6rem;
-    font-weight:750;
-}
-
-.inbody-card p{
-    color: var(--muted-text);
-    line-height:1.8;
-    margin-bottom:12px;
-    font-size:1rem;
-}
-
-.video-map{
-    display:flex;
-    flex-direction:column;
-    gap:25px;
-    align-content:start;
-}
-
-.video-map iframe{
-    width:100%;
-    height:300px;
-    border:none;
-    border-radius:20px;
-    overflow:hidden;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    display:block;
-}
-
-.video-thumbnail{
-    position:relative;
-    display:block;
-    width:100%;
-    aspect-ratio:16 / 9;
-    overflow:hidden;
-    border-radius:20px;
-    background: var(--surface-elevated);
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-}
-
-.video-thumbnail img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:transform .35s ease;
-    display:block;
-}
-
-.video-thumbnail::before{
-    content:"";
-    position:absolute;
-    z-index:1;
-    top:50%;
-    left:50%;
-    width:68px;
-    height:48px;
-    border-radius:14px;
-    background:#ff0000;
-    transform:translate(-50%,-50%);
-    transition:background .2s ease, transform .2s ease;
-}
-
-.video-thumbnail::after{
-    content:"";
-    position:absolute;
-    z-index:2;
-    top:50%;
-    left:50%;
-    margin-left:3px;
-    border-top:9px solid transparent;
-    border-bottom:9px solid transparent;
-    border-left:14px solid white;
-    transform:translate(-50%,-50%);
-}
-
-.video-thumbnail:hover img{
-    transform:scale(1.04);
-}
-
-.video-thumbnail:hover::before,
-.video-thumbnail:focus-visible::before{
-    background:#d90000;
-    transform:translate(-50%,-50%) scale(1.08);
-}
-
-.video-thumbnail:focus-visible{
-    outline:3px solid var(--accent-color);
-    outline-offset:4px;
-}
-
-.video-link{
-    display:inline-block;
-    width:fit-content;
-    color: var(--accent-color);
-    font-weight:600;
-    text-decoration:none;
-    transition:color .2s ease;
-}
-
-.video-link:hover{
-    color: var(--accent-hover);
-    text-decoration:underline;
-}
-
-.benefits{
-    margin-top:60px;
-}
-
-.benefits h2{
-    text-align:center;
-    color: var(--accent-color);
-    margin-bottom:30px;
-    font-size:2.1rem;
-    font-weight:750;
-}
-
-.benefit-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.benefit-card{
-    background: var(--surface-card);
-    padding:28px 20px;
-    text-align:center;
-    border-radius:20px;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
-}
-
-.benefit-card:hover{
-    transform:translateY(-8px);
-    box-shadow: var(--card-hover-shadow);
-    border-color: var(--accent-color);
-}
-
-.benefit-card h3{
-    color: var(--accent-color);
-    margin-bottom:10px;
-    font-size:1.2rem;
-}
-
-.benefit-card p{
-    color: var(--muted-text);
-    line-height:1.6;
-}
-
-.cta{
-    margin-top:60px;
-    background: var(--surface-card);
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    padding:45px 30px;
-    text-align:center;
-    border-radius:20px;
-    transition:background-color .25s ease, border-color .25s ease;
-}
-
-.cta h2{
-    color: var(--accent-color);
-    margin-bottom:15px;
-    font-size:2.1rem;
-    font-weight:750;
-}
-
-.cta p{
-    color: var(--muted-text);
-    margin-bottom:24px;
-    max-width:600px;
-    margin-left:auto;
-    margin-right:auto;
-    font-size:1.05rem;
-}
-
-.cta a{
-    display:inline-block;
-    background: var(--accent-color);
-    color: #ffffff !important;
-    text-decoration:none;
-    padding:14px 34px;
-    border-radius:50px;
-    font-weight:600;
-    box-shadow: 0 4px 15px var(--accent-glow);
-    transition:transform .25s ease, background-color .25s ease, box-shadow .25s ease;
-}
-
-.cta a:hover{
-    background: var(--accent-hover);
-    box-shadow: 0 8px 25px var(--accent-glow);
-    transform:translateY(-3px);
-}
-
-@media(max-width:900px){
-    .inbody-section{
-        grid-template-columns:1fr;
+    .inbody-hero {
+        text-align: center;
+        margin-bottom: 45px;
     }
 
-    .benefit-grid{
-        grid-template-columns:repeat(2, 1fr);
+    .inbody-hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 12px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
     }
 
-    .inbody-header h1{
-        font-size:2.2rem;
+    .inbody-hero h1 span {
+        color: var(--accent-color);
     }
 
-    .video-map iframe{
-        height:260px;
+    .inbody-hero p {
+        color: var(--muted-text);
+        max-width: 720px;
+        margin: 0 auto;
+        font-size: 1.05rem;
+        line-height: 1.7;
     }
-}
 
-@media(max-width:600px){
-    .benefit-grid{
-        grid-template-columns:1fr;
+    .inbody-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 36px;
+        align-items: start;
+        margin-bottom: 60px;
     }
-}
+
+    .inbody-info-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 36px;
+        box-shadow: var(--card-shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .inbody-info-card h2 {
+        font-size: 1.8rem;
+        font-weight: 750;
+        color: var(--heading-color);
+    }
+
+    /* Metric Visualizer Items */
+    .metric-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .metric-item {
+        background: var(--surface-elevated);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 14px 16px;
+    }
+
+    .metric-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .metric-title {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--heading-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .metric-tag {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        background: var(--accent-soft);
+        padding: 2px 8px;
+        border-radius: 12px;
+    }
+
+    .metric-bar-bg {
+        width: 100%;
+        height: 6px;
+        background: var(--surface-input);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .metric-bar-fill {
+        height: 100%;
+        background: var(--accent-color);
+        border-radius: 10px;
+        transition: width 0.8s ease;
+    }
+
+    /* Right Media Column */
+    .media-column {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .video-card-frame {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        background: var(--surface-card);
+    }
+
+    .video-thumb-link {
+        position: relative;
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: #000;
+        text-decoration: none;
+    }
+
+    .video-thumb-link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.35s ease;
+    }
+
+    .video-thumb-link:hover img {
+        transform: scale(1.04);
+    }
+
+    .video-play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 64px;
+        height: 64px;
+        background: #ff0000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.6rem;
+        box-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .video-thumb-link:hover .video-play-btn {
+        transform: translate(-50%, -50%) scale(1.12);
+        background: #d90000;
+    }
+
+    .map-frame-box {
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        background: var(--surface-card);
+        height: 240px;
+    }
+
+    .map-frame-box iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    /* Benefits Grid */
+    .benefits-title {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 750;
+        margin-bottom: 12px;
+    }
+
+    .benefits-sub {
+        text-align: center;
+        color: var(--muted-text);
+        margin-bottom: 35px;
+    }
+
+    .inbody-benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 60px;
+    }
+
+    .inbody-benefit-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 18px;
+        padding: 26px 20px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .inbody-benefit-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+    }
+
+    .benefit-icon {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+        display: inline-block;
+    }
+
+    .inbody-benefit-card h3 {
+        color: var(--heading-color);
+        font-size: 1.15rem;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .inbody-benefit-card p {
+        color: var(--muted-text);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    /* CTA */
+    .inbody-cta-box {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 45px 30px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+    }
+
+    .inbody-cta-box h2 {
+        font-size: 2.2rem;
+        font-weight: 750;
+        margin-bottom: 12px;
+    }
+
+    .inbody-cta-box p {
+        color: var(--muted-text);
+        max-width: 600px;
+        margin: 0 auto 24px;
+        font-size: 1.05rem;
+    }
+
+    .btn-schedule-scan {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 34px;
+        border-radius: 30px;
+        background: var(--accent-color);
+        color: #ffffff !important;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        box-shadow: 0 4px 18px var(--accent-glow);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-schedule-scan:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 960px) {
+        .inbody-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .inbody-benefits-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 540px) {
+        .inbody-benefits-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 
-<div class="inbody-container">
+<div class="page-container">
 
-    <div class="inbody-header">
-        <h1>InBody Body Composition Analysis 📊</h1>
+    <div class="inbody-hero">
+        <span class="badge">📊 Science-Backed Fitness</span>
+        <h1>InBody <span>Body Composition</span></h1>
         <p>
-            Discover what your body is really made of. Our advanced InBody
-            assessment helps you understand your muscle mass, body fat,
-            hydration levels, and overall fitness profile.
+            Go far beyond the bathroom scale. Discover your exact muscle-to-fat balance,
+            cellular hydration, and basal metabolic rate with our clinical InBody scanner.
         </p>
     </div>
 
-    <div class="inbody-section">
-        <div class="inbody-card">
-            <h2>What Does InBody Measure?</h2>
+    <div class="inbody-grid">
+        <!-- Metrics Breakdown Card -->
+        <div class="inbody-info-card">
+            <h2>Key Metrics Analyzed</h2>
+            <p>
+                InBody uses multi-frequency bioelectrical impedance analysis (BIA)
+                to assess your body in 60 seconds with 98% DEXA scan correlation.
+            </p>
 
-            <p>💪 Muscle Mass & Muscle Distribution</p>
-            <p>⚖️ Body Fat Percentage</p>
-            <p>🫀 Visceral Fat Around Organs</p>
-            <p>💧 Body Water Balance</p>
-            <p>🔥 Basal Metabolic Rate (BMR)</p>
-            <p>📈 Segmental Lean Mass Analysis</p>
+            <div class="metric-list">
+                <div class="metric-item">
+                    <div class="metric-top">
+                        <span class="metric-title">💪 Skeletal Muscle Mass</span>
+                        <span class="metric-tag">High Accuracy</span>
+                    </div>
+                    <div class="metric-bar-bg">
+                        <div class="metric-bar-fill" style="width: 82%;"></div>
+                    </div>
+                </div>
 
-            <br>
+                <div class="metric-item">
+                    <div class="metric-top">
+                        <span class="metric-title">⚖️ Percent Body Fat (PBF)</span>
+                        <span class="metric-tag">Exact %</span>
+                    </div>
+                    <div class="metric-bar-bg">
+                        <div class="metric-bar-fill" style="width: 65%;"></div>
+                    </div>
+                </div>
 
-            <h2>Why Take The Test?</h2>
+                <div class="metric-item">
+                    <div class="metric-top">
+                        <span class="metric-title">🫀 Visceral Fat Level</span>
+                        <span class="metric-tag">Health Marker</span>
+                    </div>
+                    <div class="metric-bar-bg">
+                        <div class="metric-bar-fill" style="width: 45%;"></div>
+                    </div>
+                </div>
 
-            <p>🎯 Personalized Workout Programs</p>
-            <p>📊 Track Your Fitness Progress</p>
-            <p>🥗 Better Nutrition Planning</p>
-            <p>🏆 Set Realistic Fitness Goals</p>
+                <div class="metric-item">
+                    <div class="metric-top">
+                        <span class="metric-title">🔥 Basal Metabolic Rate (BMR)</span>
+                        <span class="metric-tag">Daily Caloric Baseline</span>
+                    </div>
+                    <div class="metric-bar-bg">
+                        <div class="metric-bar-fill" style="width: 78%;"></div>
+                    </div>
+                </div>
+
+                <div class="metric-item">
+                    <div class="metric-top">
+                        <span class="metric-title">📈 Segmental Lean Analysis</span>
+                        <span class="metric-tag">Arms, Legs & Trunk</span>
+                    </div>
+                    <div class="metric-bar-bg">
+                        <div class="metric-bar-fill" style="width: 88%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="video-map">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7166437905194!2d73.1620621!3d19.2075747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79571c01e2a0b%3A0x647c353cd5d906d7!2sB.B.%20Fitness%20Crew!5e0!3m2!1sen!2sin!4v1771856198459!5m2!1sen!2sin"
-                loading="lazy"
-                title="BB Fitness Crew Map Location">
-            </iframe>
+        <!-- Right Media Column: Video & Map -->
+        <div class="media-column">
+            <div class="video-card-frame">
+                <a href="https://www.youtube.com/watch?v=B6jIUOi8puk" target="_blank" rel="noopener noreferrer" class="video-thumb-link" aria-label="Watch InBody video preview">
+                    <img src="https://img.youtube.com/vi/B6jIUOi8puk/hqdefault.jpg" alt="InBody assessment demonstration">
+                    <div class="video-play-btn">▶</div>
+                </a>
+            </div>
 
-            <a class="video-thumbnail"
-               href="https://www.youtube.com/watch?v=B6jIUOi8puk"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Watch the InBody video on YouTube">
-                <img src="https://img.youtube.com/vi/B6jIUOi8puk/hqdefault.jpg"
-                     alt="InBody analysis video preview">
-            </a>
-            <a class="video-link"
-               href="https://www.youtube.com/watch?v=B6jIUOi8puk"
-               target="_blank"
-               rel="noopener noreferrer">
-                ▶️ Watch the InBody video on YouTube
-            </a>
+            <div class="map-frame-box">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7166437905194!2d73.1620621!3d19.2075747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79571c01e2a0b%3A0x647c353cd5d906d7!2sB.B.%20Fitness%20Crew!5e0!3m2!1sen!2sin!4v1771856198459!5m2!1sen!2sin"
+                    loading="lazy"
+                    title="BB Fitness Crew Map Location">
+                </iframe>
+            </div>
         </div>
     </div>
 
-    <div class="benefits">
-        <h2>Benefits of InBody Analysis</h2>
+    <!-- Benefits Section -->
+    <h2 class="benefits-title">Why Get Scanned?</h2>
+    <p class="benefits-sub">Actionable physiological insights to guide your training and diet</p>
 
-        <div class="benefit-grid">
-            <div class="benefit-card">
-                <h3>🎯 Accurate Results</h3>
-                <p>Detailed body composition analysis in minutes.</p>
-            </div>
+    <div class="inbody-benefits-grid">
+        <div class="inbody-benefit-card">
+            <span class="benefit-icon">🎯</span>
+            <h3>No More Guesswork</h3>
+            <p>Know exactly whether weight lost is body fat or valuable muscle tissue.</p>
+        </div>
 
-            <div class="benefit-card">
-                <h3>📈 Goal Tracking</h3>
-                <p>Measure your progress with scientific data.</p>
-            </div>
+        <div class="inbody-benefit-card">
+            <span class="benefit-icon">🥗</span>
+            <h3>Diet Precision</h3>
+            <p>Calculate your precise caloric maintenance target using your true BMR.</p>
+        </div>
 
-            <div class="benefit-card">
-                <h3>🥗 Personalized Plans</h3>
-                <p>Workouts and nutrition based on your body.</p>
-            </div>
+        <div class="inbody-benefit-card">
+            <span class="benefit-icon">⚖️</span>
+            <h3>Fix Imbalances</h3>
+            <p>Identify left-vs-right limb strength differences to correct posture and form.</p>
+        </div>
 
-            <div class="benefit-card">
-                <h3>⚡ Better Performance</h3>
-                <p>Optimize fitness results efficiently.</p>
-            </div>
+        <div class="inbody-benefit-card">
+            <span class="benefit-icon">📈</span>
+            <h3>Track Real Progress</h3>
+            <p>Compare baseline and monthly scans to stay locked in and motivated.</p>
         </div>
     </div>
 
-    <div class="cta">
-        <h2>Book Your InBody Assessment Today</h2>
-        <p>
-            Get a complete picture of your fitness and start your
-            transformation with BB Fitness Crew.
-        </p>
-        <a href="{% url 'contact' %}">
-            Schedule Now
+    <!-- CTA -->
+    <div class="inbody-cta-box">
+        <h2>Schedule Your InBody Body Assessment</h2>
+        <p>Free for new members on day one. Walk in today or book your scanning slot.</p>
+        <a href="{% url 'contact' %}" class="btn-schedule-scan">
+            Book InBody Scan Slot 🚀
         </a>
     </div>
 

@@ -1,345 +1,409 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}BB Fitness Crew | Free Trial{% endblock %}
+{% block title %}BB Fitness Crew | Claim Your Free Gym Trial{% endblock %}
 
 {% block content %}
 
 <style>
-.try-page{margin:-30px;}
-
-@keyframes content-enter{
-    from{opacity:0; transform:translateY(14px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-.try-photo{
-    max-width:1160px;
-    margin:0 auto;
-    padding:0 24px;
-    overflow:hidden;
-    animation:content-enter .6s ease-out both;
-}
-
-.try-photo img{
-    width:100%;
-    height:340px;
-    object-fit:cover;
-    border-radius:8px;
-    transition:transform .45s ease, filter .45s ease;
-}
-
-.try-photo:hover img{
-    transform:scale(1.02);
-    filter:saturate(1.08);
-}
-
-.try-intro{
-    max-width:1160px;
-    margin:0 auto;
-    padding:56px 24px 42px;
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    gap:32px;
-    animation:content-enter .6s .1s ease-out both;
-}
-
-.try-intro>div{max-width:720px;}
-
-.eyebrow{
-    color: var(--accent-color);
-    font-size:.85rem;
-    font-weight:700;
-    text-transform:uppercase;
-    margin-bottom:12px;
-    letter-spacing:0.5px;
-}
-
-.try-intro h1{
-    color: var(--heading-color);
-    font-size:3rem;
-    line-height:1.15;
-    margin-bottom:16px;
-    font-weight:750;
-}
-
-.try-intro h1 span{
-    color: var(--accent-color);
-}
-
-.try-intro p:not(.eyebrow){
-    color: var(--muted-text);
-    font-size:1.05rem;
-    line-height:1.75;
-}
-
-.try-link{
-    flex:none;
-    color: var(--accent-color);
-    font-weight:600;
-    text-decoration:none;
-    padding:10px 0;
-    border-bottom:1.5px solid var(--accent-color);
-    transition:color .2s ease, border-color .2s ease;
-}
-
-.try-link:hover,
-.try-link:focus-visible{
-    color: var(--accent-hover);
-    border-color: var(--accent-hover);
-}
-
-.try-link:focus-visible,
-.btn-call:focus-visible,
-.btn-whatsapp:focus-visible{
-    outline:2px solid var(--accent-color);
-    outline-offset:4px;
-}
-
-.trial-section{
-    max-width:1160px;
-    margin:0 auto;
-    padding:18px 24px 68px;
-    scroll-margin-top:24px;
-    animation:content-enter .6s .18s ease-out both;
-}
-
-.trial-section>h2{
-    color: var(--heading-color);
-    font-size:2rem;
-    margin-bottom:28px;
-    font-weight:750;
-}
-
-.trial-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-}
-
-.trial-card{
-    padding:26px;
-    background: var(--surface-card);
-    border: 1px solid var(--border-color);
-    border-top:3px solid var(--accent-color);
-    border-radius:14px;
-    box-shadow: var(--card-shadow);
-    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
-}
-
-.trial-card:hover{
-    transform:translateY(-3px);
-    border-top-color: var(--accent-hover);
-    box-shadow: var(--card-hover-shadow);
-}
-
-.trial-card:nth-child(1){animation:content-enter .5s .08s ease-out both;}
-.trial-card:nth-child(2){animation:content-enter .5s .16s ease-out both;}
-.trial-card:nth-child(3){animation:content-enter .5s .24s ease-out both;}
-
-.trial-card h3{
-    color: var(--accent-color);
-    font-size:1.25rem;
-    margin:0 0 14px;
-    font-weight:700;
-}
-
-.trial-card p,
-.trial-card li{
-    color: var(--muted-text);
-    line-height:1.75;
-}
-
-.trial-card ul{
-    list-style:none;
-    padding:0;
-}
-
-.trial-card li::before{
-    content:"+";
-    color: var(--accent-color);
-    font-weight:700;
-    margin-right:10px;
-}
-
-.cta-section{
-    background: var(--surface-card);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    border-radius:20px;
-    max-width:1160px;
-    margin:0 auto 50px;
-    padding:45px 24px;
-    text-align:center;
-    animation:content-enter .6s .24s ease-out both;
-    transition:background-color .25s ease, border-color .25s ease;
-}
-
-.cta-inner{max-width:800px; margin:0 auto;}
-
-.cta-section h2{
-    color: var(--heading-color);
-    font-size:2.1rem;
-    margin-bottom:12px;
-    font-weight:750;
-}
-
-.cta-section p{
-    max-width:600px;
-    color: var(--muted-text);
-    line-height:1.7;
-    margin:0 auto 26px;
-    font-size:1.05rem;
-}
-
-.contact-buttons{
-    display:flex;
-    justify-content:center;
-    gap:16px;
-    flex-wrap:wrap;
-}
-
-.btn-call,
-.btn-whatsapp{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:48px;
-    padding:12px 26px;
-    border:1px solid transparent;
-    border-radius:6px;
-    color:#ffffff !important;
-    font-weight:600;
-    text-decoration:none;
-    font-size:1rem;
-    transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease;
-}
-
-.btn-call{
-    background: var(--accent-color);
-    box-shadow: 0 4px 15px var(--accent-glow);
-}
-
-.btn-call:hover{
-    background: var(--accent-hover);
-    transform:translateY(-2px);
-    box-shadow: 0 6px 20px var(--accent-glow);
-}
-
-.btn-whatsapp{
-    background:#25D366;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-}
-
-.btn-whatsapp:hover{
-    transform:translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-}
-
-@media(max-width:768px){
-    .try-page{margin:-15px;}
-    .try-photo{padding:0 20px;}
-    .try-photo img{height:220px;}
-
-    .try-intro{
-        display:block;
-        padding:40px 20px 30px;
+    .try-hero-card {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        background: var(--surface-card);
+        margin-bottom: 45px;
     }
 
-    .try-intro h1{
-        font-size:2.2rem;
+    .try-hero-card img {
+        width: 100%;
+        height: 360px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
     }
 
-    .try-intro .try-link{display:inline-block; margin-top:8px;}
-    .trial-section{padding:12px 20px 48px;}
-    .trial-grid{grid-template-columns:1fr; gap:18px;}
-    .cta-section{margin:0 15px 40px; padding:34px 20px;}
-}
+    .try-hero-card:hover img {
+        transform: scale(1.02);
+    }
 
-@media(prefers-reduced-motion:reduce){
-    .try-photo,
-    .try-intro,
-    .trial-section,
-    .trial-card,
-    .cta-section{animation:none;}
-    .try-photo img{transition:none;}
-    .try-photo:hover img,
-    .trial-card:hover,
-    .btn-call:hover,
-    .btn-whatsapp:hover{transform:none;}
-    .try-photo:hover img{filter:none;}
-    .try-link,
-    .trial-card,
+    .try-badge-overlay {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        background: rgba(14, 20, 30, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 30px;
+        color: #ffffff;
+        font-size: 0.88rem;
+        font-weight: 700;
+    }
+
+    .try-intro-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 36px;
+        margin-bottom: 55px;
+    }
+
+    .try-intro-text h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 14px;
+        letter-spacing: -0.5px;
+    }
+
+    .try-intro-text h1 span {
+        color: var(--accent-color);
+    }
+
+    .try-intro-text p {
+        color: var(--muted-text);
+        font-size: 1.1rem;
+        line-height: 1.7;
+        max-width: 720px;
+    }
+
+    .try-cta-actions {
+        display: flex;
+        gap: 12px;
+        flex-shrink: 0;
+    }
+
+    .btn-claim-trial {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        background: var(--accent-color);
+        color: #ffffff !important;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 1rem;
+        box-shadow: 0 4px 18px var(--accent-glow);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .btn-claim-trial:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    /* What to Expect Grid */
+    .section-title {
+        font-size: 2.2rem;
+        font-weight: 750;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .trial-features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 55px;
+    }
+
+    .trial-box {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-top: 3px solid var(--accent-color);
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .trial-box:hover {
+        transform: translateY(-4px);
+        border-top-color: var(--accent-hover);
+        box-shadow: var(--card-hover-shadow);
+    }
+
+    .trial-box h3 {
+        color: var(--heading-color);
+        margin-bottom: 12px;
+        font-size: 1.25rem;
+        font-weight: 750;
+    }
+
+    .trial-box p {
+        color: var(--muted-text);
+        line-height: 1.7;
+    }
+
+    .trial-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .trial-box li {
+        color: var(--muted-text);
+        font-size: 0.92rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .trial-box li span {
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+
+    /* What to bring Checklist */
+    .checklist-banner {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 36px;
+        margin-bottom: 55px;
+        box-shadow: var(--card-shadow);
+    }
+
+    .checklist-banner h2 {
+        font-size: 1.8rem;
+        font-weight: 750;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .checklist-banner p.sub {
+        text-align: center;
+        color: var(--muted-text);
+        margin-bottom: 28px;
+    }
+
+    .checklist-pills {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    .check-pill {
+        padding: 16px;
+        background: var(--surface-elevated);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        text-align: center;
+        font-weight: 600;
+        color: var(--heading-color);
+        font-size: 0.95rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .check-pill .emoji {
+        font-size: 1.8rem;
+    }
+
+    /* CTA Card */
+    .cta-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 45px 30px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+    }
+
+    .cta-card h2 {
+        font-size: 2.2rem;
+        font-weight: 750;
+        margin-bottom: 12px;
+    }
+
+    .cta-card p {
+        color: var(--muted-text);
+        max-width: 600px;
+        margin: 0 auto 26px;
+        font-size: 1.05rem;
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
     .btn-call,
-    .btn-whatsapp{transition:none;}
-}
+    .btn-wa {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 26px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.98rem;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-call {
+        background: var(--accent-color);
+        color: #ffffff !important;
+        box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    .btn-call:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    .btn-wa {
+        background: #25D366;
+        color: #ffffff !important;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-wa:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+
+    @media (max-width: 960px) {
+        .try-intro-box {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .trial-features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .checklist-pills {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .try-hero-card img {
+            height: 240px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .checklist-pills {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 
-<div class="try-page">
-    <section class="try-photo" aria-label="BB Fitness Crew free trial">
-        <img src="{% static 'myapp/images/try_us.png' %}" alt="BB Fitness Crew gym and free trial">
-    </section>
+<div class="page-container">
 
-    <section class="try-intro">
-        <div>
-            <p class="eyebrow">BB Fitness Crew / Free Trial</p>
+    <!-- Hero Image Banner -->
+    <div class="try-hero-card">
+        <img src="{% static 'myapp/images/try_us.png' %}" alt="BB Fitness Crew gym trial">
+        <div class="try-badge-overlay">
+            <span>🎁 100% Free • No Obligation • Instant Pass</span>
+        </div>
+    </div>
+
+    <!-- Intro Area -->
+    <section class="try-intro-box">
+        <div class="try-intro-text">
+            <span class="badge">🔥 Try Before You Decide</span>
             <h1>Try <span>BB Fitness Crew</span> For Free</h1>
             <p>
-                Experience our gym, equipment, trainers, and atmosphere before
-                committing. Your transformation starts with one visit.
+                Experience our high-performance equipment, meet our friendly coaches,
+                and soak in the motivating fitness energy before making any commitment.
             </p>
         </div>
-        <a class="try-link" href="#trial-details">Explore the free trial <span aria-hidden="true">&darr;</span></a>
-    </section>
 
-    <section class="trial-section" id="trial-details" aria-labelledby="trial-heading">
-        <h2 id="trial-heading">What to expect on your visit</h2>
-        <div class="trial-grid">
-            <article class="trial-card">
-                <h3>What's Included?</h3>
-                <ul>
-                    <li>Premium cardio equipment</li>
-                    <li>Strength training zone</li>
-                    <li>Functional training area</li>
-                    <li>Access to expert trainers</li>
-                </ul>
-            </article>
-
-            <article class="trial-card">
-                <h3>Women-Friendly Gym</h3>
-                <p>
-                    Safe, supportive and welcoming environment. Many of our members
-                    are women who enjoy training comfortably and confidently.
-                </p>
-            </article>
-
-            <article class="trial-card">
-                <h3>The BB Fitness Crew Vibe</h3>
-                <p>
-                    We respect your goals, your time, and your journey. Train with
-                    motivated people who inspire growth every day.
-                </p>
-            </article>
+        <div class="try-cta-actions">
+            <a href="{% url 'contact' %}" class="btn-claim-trial">
+                Claim Free Day Pass 🎟️
+            </a>
         </div>
     </section>
 
-    <section class="cta-section">
-        <div class="cta-inner">
-            <h2>Ready To Start?</h2>
+    <!-- Trial Features -->
+    <h2 class="section-title">What Your Free Pass Includes</h2>
+
+    <div class="trial-features-grid">
+        <div class="trial-box">
+            <h3>🏋️ Full Facility Access</h3>
+            <ul>
+                <li><span>✓</span> Full cardio & resistance training zone</li>
+                <li><span>✓</span> Heavy dumbbell & Olympic barbell racks</li>
+                <li><span>✓</span> Functional training & stretch mats</li>
+                <li><span>✓</span> Lockers & air-conditioned workout floor</li>
+            </ul>
+        </div>
+
+        <div class="trial-box">
+            <h3>🌸 Safe & Welcoming Space</h3>
             <p>
-                Your free gym trial is just one call or message away.
-                Visit BB Fitness Crew today and experience the difference.
+                BB Fitness Crew takes pride in providing a clean, respectful,
+                and women-friendly atmosphere where every individual can train with
+                absolute confidence and privacy.
             </p>
-            <div class="contact-buttons">
-                <a href="tel:+918788948680" class="btn-call">Call Now</a>
-                <a href="https://wa.me/918788948680?text=Hi%20I%20want%20gym%20training%20details"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn-whatsapp">WhatsApp</a>
+        </div>
+
+        <div class="trial-box">
+            <h3>🤝 The BB Crew Energy</h3>
+            <p>
+                Zero intimidation, 100% support. You will be surrounded by driven people
+                who push their limits and celebrate personal records together every day.
+            </p>
+        </div>
+    </div>
+
+    <!-- What to Bring Checklist -->
+    <div class="checklist-banner">
+        <h2>What to Bring for Your First Visit</h2>
+        <p class="sub">Just pack the basics and we take care of the rest</p>
+
+        <div class="checklist-pills">
+            <div class="check-pill">
+                <span class="emoji">👟</span>
+                <span>Clean Gym Shoes</span>
+            </div>
+            <div class="check-pill">
+                <span class="emoji">💧</span>
+                <span>Water Bottle</span>
+            </div>
+            <div class="check-pill">
+                <span class="emoji">🧼</span>
+                <span>Sweat Towel</span>
+            </div>
+            <div class="check-pill">
+                <span class="emoji">🔥</span>
+                <span>Positive Energy</span>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- CTA Box -->
+    <div class="cta-card">
+        <h2>Ready To Start Your Transformation?</h2>
+        <p>Your free trial pass is waiting. Walk in today or notify us via WhatsApp for instant entry.</p>
+        <div class="cta-buttons">
+            <a href="tel:+918788948680" class="btn-call">
+                📞 Call Us Directly
+            </a>
+            <a href="https://wa.me/918788948680?text=Hi%20BB%20Fitness%20Crew!%20I%20am%20coming%20for%20my%20Free%20Gym%20Trial."
+               target="_blank" rel="noopener noreferrer" class="btn-wa">
+                💬 WhatsApp Free Trial Pass
+            </a>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}

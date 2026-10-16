@@ -1,7 +1,8 @@
-// BB Fitness Crew - Theme Manager
+// BB Fitness Crew - Interactive Client Scripts & Theme Manager
 (function () {
     "use strict";
 
+    // 1. Theme Manager
     function initTheme() {
         var button = document.getElementById("theme-toggle");
         var label = document.getElementById("theme-label");
@@ -55,9 +56,47 @@
         }
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initTheme);
-    } else {
+    // 2. Active Nav Link Highlighter
+    function initActiveNav() {
+        var path = window.location.pathname;
+        var links = document.querySelectorAll(".nav-links a");
+
+        links.forEach(function (link) {
+            var href = link.getAttribute("href");
+            // Match home path exact or subpaths
+            if (href === path || (href !== "/" && path.startsWith(href))) {
+                link.classList.add("active");
+            } else if (href === "/" && (path === "" || path === "/")) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    }
+
+    // 3. Navbar scroll effect
+    function initScrollNav() {
+        var nav = document.querySelector(".site-nav");
+        if (!nav) return;
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 30) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        }, { passive: true });
+    }
+
+    function initAll() {
         initTheme();
+        initActiveNav();
+        initScrollNav();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAll);
+    } else {
+        initAll();
     }
 })();

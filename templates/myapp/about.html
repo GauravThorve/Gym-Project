@@ -1,196 +1,266 @@
 {% extends 'base.html' %}
 
-{% block title %}BB Fitness Crew | About Us{% endblock %}
+{% block title %}BB Fitness Crew | About Us & Our Mission{% endblock %}
 
 {% block content %}
 
 <style>
-.about-section{
-    max-width:1200px;
-    margin:auto;
-    padding:60px 20px;
-}
-
-.about-hero{
-    text-align:center;
-    margin-bottom:60px;
-}
-
-.about-hero h1{
-    font-size:3rem;
-    color: var(--accent-color);
-    margin-bottom:15px;
-    font-weight:750;
-}
-
-.about-hero p{
-    max-width:800px;
-    margin:auto;
-    color: var(--muted-text);
-    font-size:1.1rem;
-    line-height:1.8;
-}
-
-.about-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:30px;
-    margin-top:40px;
-}
-
-.about-card{
-    background: var(--surface-card);
-    padding:35px;
-    border-radius:20px;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
-}
-
-.about-card:hover{
-    transform:translateY(-8px);
-    box-shadow: var(--card-hover-shadow);
-    border-color: var(--accent-color);
-}
-
-.about-card h2{
-    color: var(--accent-color);
-    margin-bottom:15px;
-    font-size:1.5rem;
-    font-weight:750;
-}
-
-.about-card p{
-    color: var(--muted-text);
-    line-height:1.8;
-    font-size:1rem;
-}
-
-.why-us{
-    margin-top:70px;
-}
-
-.why-us h2{
-    text-align:center;
-    color: var(--accent-color);
-    margin-bottom:35px;
-    font-size:2.1rem;
-    font-weight:750;
-}
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
-}
-
-.feature-box{
-    background: var(--surface-card);
-    padding:32px 24px;
-    text-align:center;
-    border-radius:20px;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
-}
-
-.feature-box:hover{
-    transform:translateY(-8px);
-    box-shadow: var(--card-hover-shadow);
-    border-color: var(--accent-color);
-}
-
-.feature-box h3{
-    color: var(--accent-color);
-    margin-bottom:12px;
-    font-size:1.25rem;
-    font-weight:700;
-}
-
-.feature-box p{
-    color: var(--muted-text);
-    line-height:1.6;
-}
-
-@media(max-width:768px){
-    .about-hero h1{
-        font-size:2.2rem;
+    .about-hero {
+        text-align: center;
+        margin-bottom: 50px;
     }
 
-    .about-grid{
-        grid-template-columns:1fr;
-        gap:20px;
+    .about-hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 14px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
     }
 
-    .features{
-        grid-template-columns:1fr;
-        gap:20px;
+    .about-hero h1 span {
+        color: var(--accent-color);
     }
-}
+
+    .about-hero p {
+        color: var(--muted-text);
+        max-width: 760px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    /* Mission & Vision Grid */
+    .mission-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        margin-bottom: 60px;
+    }
+
+    .mission-card {
+        background: var(--surface-card);
+        padding: 36px 30px;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mission-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+        box-shadow: var(--card-hover-shadow);
+    }
+
+    .mission-icon {
+        font-size: 2.4rem;
+        margin-bottom: 14px;
+        display: inline-block;
+    }
+
+    .mission-card h2 {
+        color: var(--heading-color);
+        margin-bottom: 12px;
+        font-size: 1.6rem;
+        font-weight: 750;
+    }
+
+    .mission-card p {
+        color: var(--muted-text);
+        line-height: 1.75;
+        font-size: 1rem;
+    }
+
+    /* Core Values Section */
+    .values-title-wrap {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .values-title-wrap h2 {
+        font-size: 2.2rem;
+        font-weight: 750;
+        margin-bottom: 10px;
+    }
+
+    .values-title-wrap p {
+        color: var(--muted-text);
+        font-size: 1.05rem;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 60px;
+    }
+
+    .value-box {
+        background: var(--surface-card);
+        padding: 32px 24px;
+        text-align: center;
+        border-radius: 18px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .value-box:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+    }
+
+    .value-icon {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+        display: inline-block;
+    }
+
+    .value-box h3 {
+        color: var(--heading-color);
+        margin-bottom: 10px;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    .value-box p {
+        color: var(--muted-text);
+        line-height: 1.6;
+        font-size: 0.92rem;
+    }
+
+    /* Story Card */
+    .story-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 42px 36px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+    }
+
+    .story-card h2 {
+        font-size: 2rem;
+        font-weight: 750;
+        margin-bottom: 14px;
+    }
+
+    .story-card p {
+        color: var(--muted-text);
+        line-height: 1.8;
+        max-width: 720px;
+        margin: 0 auto 28px;
+        font-size: 1.05rem;
+    }
+
+    .btn-about-join {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 34px;
+        border-radius: 30px;
+        background: var(--accent-color);
+        color: #ffffff !important;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        box-shadow: 0 4px 18px var(--accent-glow);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-about-join:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 960px) {
+        .mission-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .values-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .about-hero h1 {
+            font-size: 2.2rem;
+        }
+    }
 </style>
 
-<section class="about-section">
+<div class="page-container">
 
     <div class="about-hero">
-        <h1>About BB Fitness Crew 💪</h1>
+        <span class="badge">💪 The BB Fitness Legacy</span>
+        <h1>About <span>BB Fitness Crew</span></h1>
         <p>
-            At BB Fitness Crew, we believe fitness is not just about lifting
-            weights—it's about building confidence, discipline, and a healthier
-            lifestyle. Our mission is to help every member become the strongest
-            version of themselves.
+            At BB Fitness Crew, we believe fitness is not just about lifting heavy weights—it is
+            about instilling daily discipline, cultivating confidence, and forging a healthier,
+            more resilient version of yourself every single day.
         </p>
     </div>
 
-    <div class="about-grid">
-        <div class="about-card">
-            <h2>🎯 Our Mission</h2>
+    <!-- Mission & Vision Cards -->
+    <div class="mission-grid">
+        <div class="mission-card">
+            <span class="mission-icon">🎯</span>
+            <h2>Our Mission</h2>
             <p>
-                To provide a motivating environment where people of all fitness
-                levels can achieve their goals through expert guidance,
-                quality equipment, and a supportive fitness community.
+                To provide an inspiring, non-judgmental fitness space where people of all experience levels
+                achieve transformative results through certified personal coaching, advanced equipment,
+                and an unwavering community brotherhood and sisterhood.
             </p>
         </div>
 
-        <div class="about-card">
-            <h2>👁️ Our Vision</h2>
+        <div class="mission-card">
+            <span class="mission-icon">👁️</span>
+            <h2>Our Vision</h2>
             <p>
-                To become the most trusted fitness destination in Ulhasnagar,
-                helping individuals transform their bodies and improve their
-                overall health and confidence.
+                To be recognized as the premier fitness destination in Ulhasnagar—redefining health,
+                body composition, and athletic longevity through scientific training principles and
+                genuine care for every member who walks through our doors.
             </p>
         </div>
     </div>
 
-    <div class="why-us">
-        <h2>Why Choose BB Fitness Crew?</h2>
+    <!-- Values Grid -->
+    <div class="values-title-wrap">
+        <h2>What We Stand For</h2>
+        <p>The core values that drive the BB Fitness Crew culture</p>
+    </div>
 
-        <div class="features">
-            <div class="feature-box">
-                <h3>🏋️ Modern Equipment</h3>
-                <p>
-                    Train with premium machines and free weights designed for
-                    all fitness levels.
-                </p>
-            </div>
+    <div class="values-grid">
+        <div class="value-box">
+            <span class="value-icon">🏋️</span>
+            <h3>Quality Over Quantity</h3>
+            <p>We invest in heavy-duty commercial equipment and strict training technique over dangerous shortcuts.</p>
+        </div>
 
-            <div class="feature-box">
-                <h3>👥 Expert Guidance</h3>
-                <p>
-                    Get professional support and workout plans to reach your
-                    goals faster.
-                </p>
-            </div>
+        <div class="value-box">
+            <span class="value-icon">🤝</span>
+            <h3>Inclusive & Supportive</h3>
+            <p>From absolute beginners to competitive athletes, everyone receives respect and encouraging guidance.</p>
+        </div>
 
-            <div class="feature-box">
-                <h3>🔥 Positive Environment</h3>
-                <p>
-                    Join a community that motivates, supports, and inspires
-                    your fitness journey every day.
-                </p>
-            </div>
+        <div class="value-box">
+            <span class="value-icon">🔥</span>
+            <h3>Relentless Passion</h3>
+            <p>Our trainers are fully invested in your physical and mental growth—we celebrate your personal records with you.</p>
         </div>
     </div>
 
-</section>
+    <!-- Story / CTA Card -->
+    <div class="story-card">
+        <h2>Ready to Become Your Strongest Self?</h2>
+        <p>
+            Whether you want to drop body fat, pack on dense muscle, or boost your daily energy,
+            the best time to start is right now.
+        </p>
+        <a href="{% url 'contact' %}" class="btn-about-join">
+            Join The Crew Today 🚀
+        </a>
+    </div>
+
+</div>
 
 {% endblock %}

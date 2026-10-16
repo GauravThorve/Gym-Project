@@ -1,202 +1,290 @@
 {% extends 'base.html' %}
 
-{% block title %}BB Fitness Crew | Our Location{% endblock %}
+{% block title %}BB Fitness Crew | Our Location & Facility{% endblock %}
 
 {% block content %}
 
 <style>
-.location-container{
-    max-width:1300px;
-    margin:auto;
-    padding:60px 20px;
-}
-
-.location-header{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.location-header h1{
-    color: var(--accent-color);
-    font-size:3rem;
-    margin-bottom:15px;
-    font-weight:750;
-}
-
-.location-header p{
-    color: var(--muted-text);
-    max-width:700px;
-    margin:auto;
-    line-height:1.8;
-    font-size:1.05rem;
-}
-
-.location-wrapper{
-    display:grid;
-    grid-template-columns:1fr 1.2fr;
-    gap:35px;
-}
-
-.location-card{
-    background: var(--surface-card);
-    padding:35px;
-    border-radius:20px;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
-}
-
-.location-card:hover{
-    transform:translateY(-3px);
-    box-shadow: var(--card-hover-shadow);
-    border-color: var(--accent-color);
-}
-
-.location-card h2{
-    color: var(--accent-color);
-    margin-bottom:20px;
-    font-size:1.6rem;
-}
-
-.location-card p{
-    color: var(--muted-text);
-    line-height:1.9;
-    margin-bottom:18px;
-}
-
-.location-card strong{
-    color: var(--heading-color);
-    display:inline-block;
-    margin-bottom:3px;
-    font-weight:600;
-}
-
-.map-container{
-    border-radius:20px;
-    overflow:hidden;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    background: var(--surface-elevated);
-}
-
-.map-container iframe{
-    width:100%;
-    height:100%;
-    min-height:450px;
-    border:none;
-    display:block;
-}
-
-.facilities{
-    margin-top:60px;
-}
-
-.facilities h2{
-    text-align:center;
-    color: var(--accent-color);
-    margin-bottom:30px;
-    font-size:2rem;
-    font-weight:750;
-}
-
-.facility-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.facility-card{
-    background: var(--surface-card);
-    padding:28px 22px;
-    border-radius:20px;
-    text-align:center;
-    border:1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
-}
-
-.facility-card:hover{
-    transform:translateY(-8px);
-    box-shadow: var(--card-hover-shadow);
-    border-color: var(--accent-color);
-}
-
-.facility-card h3{
-    color: var(--accent-color);
-    margin-bottom:10px;
-    font-size:1.2rem;
-}
-
-.facility-card p{
-    color: var(--muted-text);
-    line-height:1.6;
-}
-
-@media(max-width:900px){
-    .location-wrapper{
-        grid-template-columns:1fr;
+    .location-hero {
+        text-align: center;
+        margin-bottom: 45px;
     }
 
-    .facility-grid{
-        grid-template-columns:repeat(2, 1fr);
+    .location-hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 12px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
     }
 
-    .location-header h1{
-        font-size:2.2rem;
+    .location-hero h1 span {
+        color: var(--accent-color);
     }
 
-    .map-container iframe{
-        min-height:320px;
+    .location-hero p {
+        color: var(--muted-text);
+        max-width: 680px;
+        margin: 0 auto;
+        font-size: 1.05rem;
+        line-height: 1.7;
     }
-}
 
-@media(max-width:600px){
-    .facility-grid{
-        grid-template-columns:1fr;
+    .location-grid-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 36px;
+        align-items: start;
+        margin-bottom: 60px;
     }
-}
+
+    .location-info-card {
+        background: var(--surface-card);
+        padding: 36px;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .live-status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        background: rgba(34, 197, 94, 0.12);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        border-radius: 20px;
+        color: #22c55e;
+        font-size: 0.82rem;
+        font-weight: 700;
+        width: fit-content;
+    }
+
+    .status-dot-sm {
+        width: 8px;
+        height: 8px;
+        background: #22c55e;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #22c55e;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .info-item-label {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--accent-color);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .info-item-value {
+        color: var(--heading-color);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        font-weight: 500;
+    }
+
+    .info-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 6px;
+    }
+
+    .btn-action-primary,
+    .btn-action-copy {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.92rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-action-primary {
+        background: var(--accent-color);
+        color: #ffffff !important;
+        border: none;
+        box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    .btn-action-primary:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    .btn-action-copy {
+        background: var(--surface-input);
+        color: var(--heading-color);
+        border: 1px solid var(--border-color);
+    }
+
+    .btn-action-copy:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+    }
+
+    .map-frame-wrapper {
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        background: var(--surface-card);
+        height: 100%;
+        min-height: 480px;
+    }
+
+    .map-frame-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 480px;
+        border: none;
+        display: block;
+    }
+
+    /* Facilities Grid */
+    .facilities-section h2 {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 750;
+        margin-bottom: 12px;
+    }
+
+    .facilities-section p.subhead {
+        text-align: center;
+        color: var(--muted-text);
+        margin-bottom: 35px;
+    }
+
+    .facility-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .facility-card {
+        background: var(--surface-card);
+        padding: 28px 22px;
+        border-radius: 18px;
+        text-align: center;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .facility-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: var(--accent-color);
+    }
+
+    .facility-icon {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+        display: inline-block;
+    }
+
+    .facility-card h3 {
+        color: var(--heading-color);
+        margin-bottom: 8px;
+        font-size: 1.15rem;
+        font-weight: 700;
+    }
+
+    .facility-card p {
+        color: var(--muted-text);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 960px) {
+        .location-grid-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .facility-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .map-frame-wrapper {
+            min-height: 350px;
+        }
+
+        .map-frame-wrapper iframe {
+            min-height: 350px;
+        }
+    }
+
+    @media (max-width: 540px) {
+        .facility-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 
-<div class="location-container">
+<div class="page-container">
 
-    <div class="location-header">
-        <h1>Visit BB Fitness Crew 📍</h1>
+    <div class="location-hero">
+        <span class="badge">📍 Prime Ulhasnagar Location</span>
+        <h1>Visit <span>BB Fitness Crew</span></h1>
         <p>
-            Experience world-class fitness equipment, expert guidance,
-            and a motivating environment designed to help you achieve
-            your fitness goals.
+            Experience premium gym machines, clean locker zones, and an empowering atmosphere.
+            Located right in the heart of Netaji Chowk, Ulhasnagar.
         </p>
     </div>
 
-    <div class="location-wrapper">
-        <div class="location-card">
-            <h2>Gym Information</h2>
+    <div class="location-grid-layout">
+        <!-- Gym Details Card -->
+        <div class="location-info-card">
+            <div class="live-status-pill">
+                <span class="status-dot-sm"></span>
+                <span>OPEN TODAY • 6:00 AM – 11:30 PM</span>
+            </div>
 
-            <p>
-                <strong>📍 Address</strong><br>
-                Dharmaveer Chowk, Netaji Chowk,<br>
-                Above Modern Wines,<br>
-                Ulhasnagar - 421005
-            </p>
+            <div class="info-item">
+                <span class="info-item-label">📍 Gym Address</span>
+                <span class="info-item-value" id="gymAddress">
+                    Behind Modern Wine Shop, Netaji Chowk, Ulhasnagar East, Maharashtra 421005
+                </span>
+            </div>
 
-            <p>
-                <strong>📞 Phone</strong><br>
-                8788948680
-            </p>
+            <div class="info-item">
+                <span class="info-item-label">📞 Direct Contact</span>
+                <span class="info-item-value">+91 8788948680</span>
+            </div>
 
-            <p>
-                <strong>🕒 Business Hours</strong><br>
-                6:00 AM – 11:30 PM
-            </p>
+            <div class="info-item">
+                <span class="info-item-label">🏋️ Services Available</span>
+                <span class="info-item-value">Gym Training, Personal Training, InBody Clinical Analysis, Recovery & Massage Therapy</span>
+            </div>
 
-            <p>
-                <strong>🏋️ Services</strong><br>
-                Gym Training, Personal Training,<br>
-                Recovery Programs, InBody Analysis
-            </p>
+            <div class="info-actions">
+                <a href="https://maps.google.com/?q=B.B.+Fitness+Crew+Ulhasnagar" target="_blank" rel="noopener noreferrer" class="btn-action-primary">
+                    Open in Google Maps 🗺️
+                </a>
+                <button type="button" class="btn-action-copy" onclick="copyAddress(this)">
+                    📋 Copy Address
+                </button>
+            </div>
         </div>
 
-        <div class="map-container">
+        <!-- Google Map Embed -->
+        <div class="map-frame-wrapper">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7166437905194!2d73.1620621!3d19.2075747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79571c01e2a0b%3A0x647c353cd5d906d7!2sB.B.%20Fitness%20Crew!5e0!3m2!1sen!2sin!4v1771856198459!5m2!1sen!2sin"
                 loading="lazy"
@@ -206,32 +294,57 @@
         </div>
     </div>
 
-    <div class="facilities">
-        <h2>What You'll Find Here</h2>
+    <!-- Facilities Section -->
+    <section class="facilities-section">
+        <h2>What You'll Find Inside</h2>
+        <p class="subhead">Engineered for serious training and complete member comfort</p>
 
         <div class="facility-grid">
             <div class="facility-card">
-                <h3>🏋️ Premium Equipment</h3>
-                <p>Modern machines and free weights.</p>
+                <span class="facility-icon">🏋️</span>
+                <h3>Premium Equipment</h3>
+                <p>Heavy dumbbells, Olympic power racks, and ergonomic plate-loaded machines.</p>
             </div>
 
             <div class="facility-card">
-                <h3>👥 Personal Training</h3>
-                <p>Expert trainers for faster results.</p>
+                <span class="facility-icon">👥</span>
+                <h3>Personal Training</h3>
+                <p>Dedicated coaching floor space for private 1-on-1 technique and workouts.</p>
             </div>
 
             <div class="facility-card">
-                <h3>📊 InBody Analysis</h3>
-                <p>Track your body transformation scientifically.</p>
+                <span class="facility-icon">📊</span>
+                <h3>InBody Scanning</h3>
+                <p>Private clinical assessment station to accurately measure progress.</p>
             </div>
 
             <div class="facility-card">
-                <h3>🔥 Motivation</h3>
-                <p>Positive environment to stay consistent.</p>
+                <span class="facility-icon">❄️</span>
+                <h3>Full Air-Conditioned</h3>
+                <p>Cool, clean, and motivating environment with continuous airflow.</p>
             </div>
         </div>
-    </div>
+    </section>
 
 </div>
+
+<script>
+    function copyAddress(btn) {
+        var addressText = document.getElementById('gymAddress').innerText.trim();
+        navigator.clipboard.writeText(addressText).then(function() {
+            var oldText = btn.innerHTML;
+            btn.innerHTML = '✓ Address Copied!';
+            btn.style.borderColor = '#22c55e';
+            btn.style.color = '#22c55e';
+            setTimeout(function() {
+                btn.innerHTML = oldText;
+                btn.style.borderColor = '';
+                btn.style.color = '';
+            }, 2500);
+        }).catch(function() {
+            alert('Address: ' + addressText);
+        });
+    }
+</script>
 
 {% endblock %}
